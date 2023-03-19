@@ -9,13 +9,13 @@ namespace Homework1_BomberMan
 {
     public class Map
     {
-        private  GameObject[,] gameObjectsMap;
+        private  GameObject[,] _gameObjectsMap;
         private int _xSize = 16;
         private int _ySize = 16;
 
         public Map()
         {
-            gameObjectsMap = new GameObject[_ySize, _xSize];
+            _gameObjectsMap = new GameObject[_ySize, _xSize];
         }
 
     }
