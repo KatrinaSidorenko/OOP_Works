@@ -8,6 +8,6 @@ namespace Homework1_BomberMan
 {
     public class EmptySpace : GameObject
     {
-        public override char Character { get; set; } = Constant.EmptySpaceChar;
+        public override char Character { get;} = Constant.EmptySpaceChar;
     }
 }
