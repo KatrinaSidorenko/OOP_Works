@@ -8,6 +8,6 @@ namespace Homework1_BomberMan
 {
     public class ConcreteWall : GameObject
     {
-        public override char Character { get; set; } = Constant.ConcreteWallChar;
+        public override char Character { get; } = Constant.ConcreteWallChar;
     }
 }

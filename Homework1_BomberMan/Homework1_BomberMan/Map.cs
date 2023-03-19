@@ -15,7 +15,7 @@ namespace Homework1_BomberMan
 
         public Map()
         {
-            gameObjectsMap = new GameObject[_xSize, _ySize];
+            gameObjectsMap = new GameObject[_ySize, _xSize];
         }
 
     }

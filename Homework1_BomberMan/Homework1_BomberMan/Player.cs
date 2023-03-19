@@ -9,7 +9,7 @@ namespace Homework1_BomberMan
 {
     public class Player : GameObject
     {
-        public override char Character { get; set; } = Constant.PlayerChar;
+        public override char Character { get; } = Constant.PlayerChar;
 
         public Player(int x, int y)
         {
