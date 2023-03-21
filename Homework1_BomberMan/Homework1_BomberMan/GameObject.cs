@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Homework1_BomberMan
 {
-    public abstract class GameObject
+    public  class GameObject
     {
         protected int X { get; set; }
         protected int Y { get; set; }
-        public abstract char Character { get; }
+        public virtual char Character { get; }
     }
 }
