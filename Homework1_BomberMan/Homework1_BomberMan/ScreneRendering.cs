@@ -15,6 +15,19 @@ namespace Homework1_BomberMan
             var map = new Map();
             map.FillMap();
             _gameMap = map.GameObjectsMap;
+            Console.CursorVisible = false;
+        }
+
+        public void GameProcess()
+        {
+            bool temp;
+            do
+            {
+                Console.Clear();
+                PrintMap();
+                _player.DrawPlayer();
+                temp = KeyboardReading(); 
+            }while(temp);
         }
 
         public void PrintMap()
@@ -27,6 +40,33 @@ namespace Homework1_BomberMan
                 }
                 Console.WriteLine();
             }
+        }
+
+        public bool KeyboardReading()
+        {
+            ConsoleKeyInfo ki = Console.ReadKey(true);
+            if (ki.Key == ConsoleKey.Escape)
+            {
+                return false;
+            }
+            if (ki.Key == ConsoleKey.LeftArrow && _gameMap[_player.Y, _player.X - 1].Character == Constant.EmptySpaceChar)
+            {
+                _player.X--;
+            }
+            if (ki.Key == ConsoleKey.RightArrow && _gameMap[_player.Y, _player.X + 1].Character == Constant.EmptySpaceChar)
+            {
+                _player.X++;
+            }
+            if (ki.Key == ConsoleKey.UpArrow && _gameMap[_player.Y - 1, _player.X].Character == Constant.EmptySpaceChar)
+            {
+                _player.Y--;
+            }
+            if (ki.Key == ConsoleKey.DownArrow && _gameMap[_player.Y + 1, _player.X].Character == Constant.EmptySpaceChar)
+            {
+                _player.Y++;
+            }
+
+            return true;
         }
     }
 }

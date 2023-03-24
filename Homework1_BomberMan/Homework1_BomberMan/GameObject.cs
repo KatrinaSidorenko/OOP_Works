@@ -8,8 +8,8 @@ namespace Homework1_BomberMan
 {
     public  class GameObject
     {
-        protected int X { get; set; }
-        protected int Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public virtual char Character { get; }
     }
 }
