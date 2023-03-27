@@ -7,7 +7,7 @@ namespace Homework1_BomberMan
         static void Main(string[] args)
         {
             var screen = new ScreneRendering();
-            screen.PrintMap();
+            screen.GameProcess();
         }
     }
 }

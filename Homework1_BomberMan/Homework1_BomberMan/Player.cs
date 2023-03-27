@@ -17,5 +17,15 @@ namespace Homework1_BomberMan
             this.Y = y;
         }
 
+        public void DrawPlayer()
+        {
+            Console.CursorLeft = this.X;
+            Console.CursorTop = this.Y;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write(this.Character);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
     }
 }
