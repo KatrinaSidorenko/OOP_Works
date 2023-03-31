@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Homework1_BomberMan
 {
-    public class Bomb : GameObject
+    public enum PlayerCondition
     {
-        public override char Character { get;} = Constant.BombChar;
+        Alive,
+        CanMove,
+        NoWay,
+        Dead
     }
 }
