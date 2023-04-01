@@ -10,7 +10,7 @@ namespace Homework1_BomberMan
     public class Player : GameObject
     {
         public override char Character { get; } = Constant.PlayerChar;
-        public PlayerCondition Condition { get; set; }
+        public GameCondition Condition { get; set; }
         public Player(int x, int y)
         {
             this.X = x;
@@ -23,18 +23,14 @@ namespace Homework1_BomberMan
             {
                 X = x;
                 Y = y;
-                Condition = PlayerCondition.CanMove;
             }
-            
-            Condition = PlayerCondition.NoWay;
         }
 
         public void PlayerDeath(Map map)
         {
             if (map[Y, X].Character == Constant.BombChar || map[Y, X].Character == Constant.BlustWaveChar)
             {
-                Console.Clear();
-                Environment.Exit(0);
+                Condition = GameCondition.End;
             }
         }
     }

@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Homework1_BomberMan
 {
-    public enum PlayerCondition
+    public enum GameCondition
     {
-        Alive,
-        CanMove,
-        NoWay,
-        Dead
+        InProgress,
+        End
     }
 }

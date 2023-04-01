@@ -16,8 +16,13 @@ namespace BomberMan
             _currentMap = map;
             _player = map.GetPlayer();
         }
-        public bool KeyboardReading()
+        public void KeyboardReading()
         {
+            if(_player.Condition == GameCondition.End)
+            {
+                GameOverScene.GameOverSceneRender();
+            }
+
             int tempX = _player.X;
             int tempY = _player.Y;
 
@@ -26,7 +31,8 @@ namespace BomberMan
             switch (ki.Key)
             {
                 case ConsoleKey.Escape:
-                    return false;
+                    Environment.Exit(0);
+                    break;
                 case ConsoleKey.Spacebar:
                     new Bomb(_player, _currentMap);
                     break;
@@ -47,8 +53,6 @@ namespace BomberMan
 
 
             _player.PlayerState(tempX, tempY, _currentMap);
-
-            return true;
         }
     }
 }

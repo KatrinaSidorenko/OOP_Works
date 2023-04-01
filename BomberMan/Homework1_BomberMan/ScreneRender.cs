@@ -11,21 +11,23 @@ namespace Homework1_BomberMan
     {
         private Map _gameMap;
         private KeyboardController _keyController;
+        private Timer _timer;
         public ScreneRender()
         {
             _gameMap = new Map();
             _keyController = new KeyboardController(_gameMap);
+            _timer = new Timer();
             Console.CursorVisible = false;
         }
 
         public void GameProcessRun()
         {
-            bool temp;
-            do
+            while (true)
             {
                 _gameMap.PrintMap();
-                temp = _keyController.KeyboardReading(); 
-            }while(temp);
+                _keyController.KeyboardReading();
+                _timer.GemaOverCheck(_gameMap.GetPlayer());
+            }                
         }     
     }
 }
