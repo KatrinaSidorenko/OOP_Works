@@ -11,7 +11,11 @@ namespace Homework1_BomberMan
         public const char PlayerChar = 'I';
         public const char BombChar = '@';
         public const char ConcreteWallChar = '#';
-        public const char TempWallChar = '&';
+        public const char TempWallChar = 'o';
         public const char EmptySpaceChar = ' ';
+        public const char BlustWaveChar = '.';
+
+        public const int WindowXSize = 18;
+        public const int WindowYSize = 16;
     }
 }
