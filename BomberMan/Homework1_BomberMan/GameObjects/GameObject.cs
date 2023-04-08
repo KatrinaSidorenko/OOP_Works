@@ -10,9 +10,20 @@ namespace Homework1_BomberMan
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public GameCondition Condition { get; set; } = GameCondition.InProgress;
-        public abstract char Character { get; }
+        public static GameCondition Condition { get; set; }
+        public int Score { get; set; }
+        public abstract char Character { get; set; }
 
+        public abstract void Draw(int y, int x);
         
+        public virtual void SetGameCondition(Map map)
+        {
+            Condition = GameCondition.InProgress;
+        }
+
+        public virtual void SetObjectIntoMap(Map map, int y, int x) 
+        {
+            map[y, x] = this;
+        }
     }
 }

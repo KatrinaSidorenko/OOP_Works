@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BomberMan;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,71 +10,57 @@ namespace Homework1_BomberMan
 {
     public class Bomb : GameObject
     {
-        public override char Character { get;} = Constant.BombChar;
+        public override char Character { get; set; } = Constant.BombChar;
         private Map _bombMap;
         private Thread _thread;
         private Player _player;
-        public Bomb(Player player, Map map)
+        public Bomb(Map map)
         {
-            this.X = player.X;
-            this.Y = player.Y;
+            this.X = map.Player.X;
+            this.Y = map.Player.Y;
+            _player = map.Player;
             _bombMap = map;
-            _player = player;
-            SetBombIntoMap();
+
+            SetObjectIntoMap(map, Y, X);
 
             _thread = new Thread(new ThreadStart(CreateBlustWave));
             _thread.Start();
         }
 
-        public void SetBombIntoMap()
-        {
-            _bombMap[this.Y, this.X] = this;
-
-        }
 
         private void DeleteBombSurrounding()
         {
-            _bombMap[this.Y, this.X] = new EmptySpace();
+            new EmptySpace().SetObjectIntoMap(_bombMap, Y, X);
 
-            CheckBombSurrounding(Y + 1, X, 1);
-            CheckBombSurrounding(Y - 1, X, 1);
-            CheckBombSurrounding(Y, X - 1, 1);
-            CheckBombSurrounding(Y, X + 1, 1);
+            new Coin().SetObjectIntoMap(_bombMap, Y, X);
         }
 
         public void CreateBlustWave()
         {
             Thread.Sleep(2000);
 
-            CheckBombSurrounding(Y + 1, X, 0);
-            CheckBombSurrounding(Y - 1, X, 0);
-            CheckBombSurrounding(Y, X - 1, 0);
-            CheckBombSurrounding(Y, X + 1, 0);
+            new BlustWave().SetObjectIntoMap(_bombMap, Y, X);
 
-            _player.PlayerDeath(_bombMap);
+            SetGameCondition(_bombMap);
 
             Thread.Sleep(1000);
 
             DeleteBombSurrounding();
         }
-        public void CheckBombSurrounding(int y, int x, int condition)
+
+        public override void Draw(int y, int x)
         {
-            switch (condition)
-            {
-                case 0:
-                    if (_bombMap[y, x].Character != Constant.ConcreteWallChar)
-                    {
-                        _bombMap[y, x] = new BlustWave();
-                    }
-                    break;
-                case 1:
-                    if (_bombMap[y, x].Character == Constant.BlustWaveChar)
-                    {
-                        _bombMap[y, x] = new EmptySpace();
-                    }
-                    break;
-            }
-            
+            Console.SetCursorPosition(x + 10, y + 5);
+            Console.Write(Character);
         }
+
+        public override void SetGameCondition(Map map)
+        {
+            if (map[map.Player.Y, map.Player.X].Character == Constant.BombChar || map[map.Player.Y, map.Player.X].Character == Constant.BlustWaveChar)
+            {
+                Condition = GameCondition.Dead;
+            }
+        }
+
     } 
 }
