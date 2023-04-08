@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Homework1_BomberMan
@@ -15,12 +16,21 @@ namespace Homework1_BomberMan
             _startTime = DateTime.Now;
         }
 
-        public void GemaOverCheck(Player player)
+        public void GemaOverTimeCheck()
         {
-            if (DateTime.Now - _startTime > _duration)
+            if (DateTime.Now - _startTime > _duration && TempWall.TotalAmountOfTempWalls == 0)
             {
-                player.Condition = GameCondition.End;
+                GameObject.Condition = GameCondition.Victory;
             }
+            else if(DateTime.Now - _startTime > _duration)
+            {
+                GameObject.Condition = GameCondition.TimeLeftEnd;
+            }
+        }
+
+        public TimeSpan GetRestOfTheTime()
+        {
+            return _duration - (DateTime.Now - _startTime);
         }
     }
 }

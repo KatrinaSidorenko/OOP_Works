@@ -8,6 +8,11 @@ namespace Homework1_BomberMan
 {
     public class EmptySpace : GameObject
     {
-        public override char Character { get; } = Constant.EmptySpaceChar;
+        public override char Character { get; set; } = Constant.EmptySpaceChar;
+        public override void Draw(int y, int x)
+        {
+            Console.SetCursorPosition(x + 10, y + 5);
+            Console.Write(Character);
+        }
     }
 }

@@ -14,21 +14,13 @@ namespace BomberMan
         public KeyboardController(Map map) 
         {
             _currentMap = map;
-            _player = map.Player;
+            _player = map.GetPlayer();
         }
         public void KeyboardReading()
         {
-            if(GameObject.Condition == GameCondition.Victory)
+            if(_player.Condition == GameCondition.End)
             {
-                GameOver.VictoryGameOver();
-            }
-            if(GameObject.Condition == GameCondition.TimeLeftEnd)
-            {
-                GameOver.GameOverTimeScene();
-            }
-            if (GameObject.Condition == GameCondition.Dead)
-            {
-                GameOver.DeadGameOver();
+                GameOverScene.GameOverSceneRender();
             }
 
             int tempX = _player.X;
@@ -42,7 +34,7 @@ namespace BomberMan
                     Environment.Exit(0);
                     break;
                 case ConsoleKey.Spacebar:
-                    new Bomb(_currentMap);
+                    new Bomb(_player, _currentMap);
                     break;
                 case ConsoleKey.LeftArrow:
                     tempX--;
@@ -58,6 +50,7 @@ namespace BomberMan
                     break;
 
             }
+
 
             _player.PlayerState(tempX, tempY, _currentMap);
         }

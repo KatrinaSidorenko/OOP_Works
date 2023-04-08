@@ -1,5 +1,4 @@
-﻿using BomberMan;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Homework1_BomberMan
     public class Map
     {
         private GameObject[,] GameObjectsMap;
-        public Player Player { get; } = new Player(1, 2);
+        private Player _player = new Player(1, 2);
         private int _xSize = Constant.WindowXSize;
         private int _ySize = Constant.WindowYSize;
         private Random RandomGanerator = new Random();
@@ -32,17 +31,13 @@ namespace Homework1_BomberMan
                     {
                         GameObjectsMap[y, x] = new ConcreteWall();
                     }
-                    else if (RandomGanerator.Next(15) == 3 || RandomGanerator.Next(15) == 5)
+                    else if (x % 2 == 0 && y % 2 == 0)
                     {
                         GameObjectsMap[y, x] = new ConcreteWall();
                     }
                     else if (RandomGanerator.Next(5) == 1)
                     {
                         GameObjectsMap[y, x] = new TempWall();
-                    }
-                    else if(RandomGanerator.Next(5,20) == 15)
-                    {
-                        GameObjectsMap[y, x] = new Coin();
                     }
                     else
                     {
@@ -51,6 +46,11 @@ namespace Homework1_BomberMan
                 }
             }
 
+        }
+
+        public Player GetPlayer()
+        {
+            return _player;
         }
 
         public GameObject this[int y, int x]
@@ -64,23 +64,27 @@ namespace Homework1_BomberMan
 
         public void PrintMap()
         {
+            Console.SetCursorPosition(0, 0);
+            var symbol = ' ';
             for (var i = 0; i < _ySize; i++)
             {
                 for (var j = 0; j < _xSize; j++)
                 {
-                    if (i == Player.Y && j == Player.X)
-                    {   
-                        Player.Draw(i, j);
+                    if (i == _player.Y && j == _player.X)
+                    {
+                        symbol = Constant.PlayerChar;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                     }
                     else
                     {
-                        this[i, j].Draw(i, j);
+                        symbol = this[i, j].Character;
                     }
+                    Console.Write(symbol);
+                    Console.ResetColor();
                 }
+
                 Console.WriteLine();
             }
         }
-
-
     }
 }

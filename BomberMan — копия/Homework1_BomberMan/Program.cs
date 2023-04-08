@@ -1,5 +1,4 @@
-﻿using BomberMan;
-using System;
+﻿using System;
 
 namespace Homework1_BomberMan
 {
@@ -7,7 +6,7 @@ namespace Homework1_BomberMan
     {
         static void Main(string[] args)
         {
-            new MainMenu().MenuStart();
+            new ScreneRender().GameProcessRun();
         }
     }
 }

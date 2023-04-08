@@ -9,7 +9,8 @@ namespace Homework1_BomberMan
 {
     public class Player : GameObject
     {
-        public override char Character { get; set; }
+        public override char Character { get; } = Constant.PlayerChar;
+        public GameCondition Condition { get; set; }
         public Player(int x, int y)
         {
             this.X = x;
@@ -23,21 +24,14 @@ namespace Homework1_BomberMan
                 X = x;
                 Y = y;
             }
-            if (map[y, x].Character == Constant.CoinChar)
+        }
+
+        public void PlayerDeath(Map map)
+        {
+            if (map[Y, X].Character == Constant.BombChar || map[Y, X].Character == Constant.BlustWaveChar)
             {
-                map[y, x] = new EmptySpace();
-                Score++;
+                Condition = GameCondition.End;
             }
         }
-
-        public override void Draw(int y, int x)
-        {
-            Console.SetCursorPosition(x + 10, y + 5);
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write(Character);
-            Console.ResetColor();
-        }
-
-        
     }
 }

@@ -8,6 +8,13 @@ namespace Homework1_BomberMan
 {
     public class ConcreteWall : GameObject
     {
-        public override char Character { get; } = Constant.ConcreteWallChar;
+        public override char Character { get; set; } = Constant.ConcreteWallChar;
+        public override void Draw(int y, int x)
+        {
+            Console.SetCursorPosition(x + 10, y + 5);
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Write(Character);
+            Console.ResetColor();
+        }
     }
 }
