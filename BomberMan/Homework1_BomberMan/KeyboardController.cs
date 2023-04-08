@@ -18,18 +18,7 @@ namespace BomberMan
         }
         public void KeyboardReading()
         {
-            if(GameObject.Condition == GameCondition.Victory)
-            {
-                GameOver.VictoryGameOver();
-            }
-            if(GameObject.Condition == GameCondition.TimeLeftEnd)
-            {
-                GameOver.GameOverTimeScene();
-            }
-            if (GameObject.Condition == GameCondition.Dead)
-            {
-                GameOver.DeadGameOver();
-            }
+            GameOver.CheckGameOver();
 
             int tempX = _player.X;
             int tempY = _player.Y;

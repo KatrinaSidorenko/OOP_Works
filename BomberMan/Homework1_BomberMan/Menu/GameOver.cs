@@ -8,6 +8,21 @@ namespace Homework1_BomberMan
 {
     public static class GameOver
     {
+        public static void CheckGameOver()
+        {
+            if (GameObject.Condition == GameCondition.Victory)
+            {
+                GameOver.VictoryGameOver();
+            }
+            if (GameObject.Condition == GameCondition.TimeLeftEnd)
+            {
+                GameOver.GameOverTimeScene();
+            }
+            if (GameObject.Condition == GameCondition.Dead)
+            {
+                GameOver.DeadGameOver();
+            }
+        }
         public static void GameOverTimeScene()
         {
             Console.Clear();
