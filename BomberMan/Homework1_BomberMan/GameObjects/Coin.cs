@@ -1,4 +1,4 @@
-﻿using Homework1_BomberMan;
+﻿using BomberMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;

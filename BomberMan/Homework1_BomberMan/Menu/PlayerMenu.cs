@@ -1,11 +1,11 @@
-﻿using BomberMan.Menu;
+﻿using BomberMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class PlayerMenu : Menu
     {
@@ -23,8 +23,9 @@ namespace Homework1_BomberMan
                 new GameMenuOption("♣", () => new ScreneRender('♣').GameProcessRun()),
                 new GameMenuOption("I", () => new ScreneRender('I').GameProcessRun()),
                 new GameMenuOption("▲", () => new ScreneRender('▲').GameProcessRun()),
-                new GameMenuOption("Ö", () => new ScreneRender('Ö').GameProcessRun()),
-                new GameMenuOption("Return to main menu", () => new MainMenu().MenuStart())
+                new GameMenuOption("▼", () => new ScreneRender('▼').GameProcessRun()),
+                new GameMenuOption("$", () => new ScreneRender('$').GameProcessRun()),
+                new GameMenuOption("~~ Return to main menu ~~", () => new MainMenu().MenuStart())
             };
 
             DrawMenu(_options, _options[_index]);

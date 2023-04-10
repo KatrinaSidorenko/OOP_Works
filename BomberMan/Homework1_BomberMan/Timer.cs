@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class Timer
     {
         private DateTime _startTime;
-        private TimeSpan _duration = new TimeSpan(0, 1, 0);
+        private TimeSpan _duration = new TimeSpan(0, 2, 0);
         public Timer()
         {
             _startTime = DateTime.Now;
@@ -18,11 +18,12 @@ namespace Homework1_BomberMan
 
         public void GemaOverTimeCheck()
         {
-            if (DateTime.Now - _startTime > _duration && TempWall.TotalAmountOfTempWalls == 0)
+            if (DateTime.Now.Subtract(_startTime) > _duration && TempWall.TotalAmountOfTempWalls == 0
+                || DateTime.Now.Subtract(_startTime) < _duration && TempWall.TotalAmountOfTempWalls == 0)
             {
                 GameObject.Condition = GameCondition.Victory;
             }
-            else if(DateTime.Now - _startTime > _duration)
+            else if(DateTime.Now.Subtract(_startTime) > _duration)
             {
                 GameObject.Condition = GameCondition.TimeLeftEnd;
             }
@@ -30,7 +31,7 @@ namespace Homework1_BomberMan
 
         public TimeSpan GetRestOfTheTime()
         {
-            return _duration - (DateTime.Now - _startTime);
+            return _duration - (DateTime.Now.Subtract(_startTime));
         }
     }
 }

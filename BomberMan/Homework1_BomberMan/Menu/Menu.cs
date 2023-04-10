@@ -1,4 +1,4 @@
-﻿using Homework1_BomberMan;
+﻿using BomberMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BomberMan.Menu
+namespace BomberMan
 {
     public class Menu
     {
@@ -45,6 +45,15 @@ namespace BomberMan.Menu
                 }
             } while (ki.Key != ConsoleKey.Escape);
         }
-        
+        public virtual void BackButton()
+        {
+            Console.WriteLine("~~ Return to the main menu ~~");
+            ConsoleKeyInfo ki = Console.ReadKey(true);
+
+            while (ki.Key != ConsoleKey.Enter)
+            {
+                ki = Console.ReadKey(true);
+            }
+        }
     }
 }

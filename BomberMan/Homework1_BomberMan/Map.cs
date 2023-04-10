@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class Map
     {
         private GameObject[,] GameObjectsMap;
-        public Player Player { get; } = new Player(1, 2);
+        public Player Player { get; } = new Player();
         private int _xSize = Constant.WindowXSize;
         private int _ySize = Constant.WindowYSize;
         private Random RandomGanerator = new Random();
@@ -36,7 +36,7 @@ namespace Homework1_BomberMan
                     {
                         GameObjectsMap[y, x] = new ConcreteWall();
                     }
-                    else if (RandomGanerator.Next(5) == 1)
+                    else if (RandomGanerator.Next(15) == 1)
                     {
                         GameObjectsMap[y, x] = new TempWall();
                     }
@@ -80,7 +80,5 @@ namespace Homework1_BomberMan
                 Console.WriteLine();
             }
         }
-
-
     }
 }

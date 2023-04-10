@@ -1,4 +1,4 @@
-﻿using Homework1_BomberMan;
+﻿using BomberMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ namespace BomberMan
     {
         private Map _currentMap;
         private Player _player;
+        private GameOver _gameOver = new GameOver();
         public KeyboardController(Map map) 
         {
             _currentMap = map;
@@ -18,7 +19,7 @@ namespace BomberMan
         }
         public void KeyboardReading()
         {
-            GameOver.CheckGameOver();
+            _gameOver.CheckGameOver();
 
             int tempX = _player.X;
             int tempY = _player.Y;
@@ -45,7 +46,6 @@ namespace BomberMan
                 case ConsoleKey.DownArrow:
                     tempY++;
                     break;
-
             }
 
             _player.PlayerState(tempX, tempY, _currentMap);

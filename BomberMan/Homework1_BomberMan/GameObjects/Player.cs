@@ -5,15 +5,16 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class Player : GameObject
     {
         public override char Character { get; set; }
-        public Player(int x, int y)
+        public Player()
         {
-            this.X = x;
-            this.Y = y;
+            var rand = new Random();
+            this.X = rand.Next(1, Constant.WindowXSize - 1);
+            this.Y = rand.Next(1, Constant.WindowYSize - 1);
         }
 
         public void PlayerState(int x, int y, Map map)

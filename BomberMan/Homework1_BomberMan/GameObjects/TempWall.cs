@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class TempWall : GameObject
     {

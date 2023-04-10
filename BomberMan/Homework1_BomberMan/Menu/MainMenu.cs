@@ -1,12 +1,12 @@
-﻿using BomberMan.Menu;
-using Homework1_BomberMan;
+﻿
+using BomberMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class MainMenu : Menu
     {
@@ -18,20 +18,16 @@ namespace Homework1_BomberMan
             Console.Clear();
             Console.Title = "BomberMan Menu";
             Console.CursorVisible = false;
-
-            Console.Write(@"
- _______                           __                            __       __                     
-|       \                         |  \                          |  \     /  \                    
-| $$$$$$$\  ______   ______ ____  | $$____    ______    ______  | $$\   /  $$  ______   _______  
-| $$__/ $$ /      \ |      \    \ | $$    \  /      \  /      \ | $$$\ /  $$$ |      \ |       \ 
-| $$    $$|  $$$$$$\| $$$$$$\$$$$\| $$$$$$$\|  $$$$$$\|  $$$$$$\| $$$$\  $$$$  \$$$$$$\| $$$$$$$\
-| $$$$$$$\| $$  | $$| $$ | $$ | $$| $$  | $$| $$    $$| $$   \$$| $$\$$ $$ $$ /      $$| $$  | $$
-| $$__/ $$| $$__/ $$| $$ | $$ | $$| $$__/ $$| $$$$$$$$| $$      | $$ \$$$| $$|  $$$$$$$| $$  | $$
-| $$    $$ \$$    $$| $$ | $$ | $$| $$    $$ \$$     \| $$      | $$  \$ | $$ \$$    $$| $$  | $$
- \$$$$$$$   \$$$$$$  \$$  \$$  \$$ \$$$$$$$   \$$$$$$$ \$$       \$$      \$$  \$$$$$$$ \$$   \$$
-                                                                                                 
-                                                                                                 
-                                                                                                 
+            Console.WindowHeight = Console.BufferHeight = 30;
+            Console.SetCursorPosition(0, 2);
+            Console.WriteLine(@"
+                                      
+                      ██████╗  ██████╗ ███╗   ███╗██████╗ ███████╗██████╗ ███╗   ███╗ █████╗ ███╗   ██╗
+                      ██╔══██╗██╔═══██╗████╗ ████║██╔══██╗██╔════╝██╔══██╗████╗ ████║██╔══██╗████╗  ██║
+                      ██████╔╝██║   ██║██╔████╔██║██████╔╝█████╗  ██████╔╝██╔████╔██║███████║██╔██╗ ██║
+                      ██╔══██╗██║   ██║██║╚██╔╝██║██╔══██╗██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║██║╚██╗██║
+                      ██████╔╝╚██████╔╝██║ ╚═╝ ██║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║██║ ╚████║
+                      ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝                                            
 "
             );
 
@@ -53,25 +49,31 @@ namespace Homework1_BomberMan
         private void HowToPlay()
         {
             Console.Clear();
-            Console.WriteLine("Here will be some instractions about game");
-            BackButton();
+            Console.WriteLine("The goal of the game: destroy all the walls - 'o' in 2 minutes" +
+                "\nBefore starting the game, you will be given the opportunity to choose the appearance of the player" +
+                "\nSome explanations:" +
+                "\n\t'@' - boma mark" +
+                "\n\t'#' - indestructible wall" +
+                "\n\t'o' - temporary wall" +
+                "\n\t'.' - explosion trace" +
+                "\n\t'♦' - coin" +
+                "\nWARNING!! If you stay near the bomb for a long time, the explosion will kill you");
+            Console.WriteLine();
+            this.BackButton();
         }
 
-        private void BackButton()
-        {
-            Console.WriteLine("--> Return to the main menu");
-            ConsoleKeyInfo ki = Console.ReadKey(true);
-
-            while (ki.Key != ConsoleKey.Enter) ;
-
-            Console.Clear();
-            MenuStart();
-        }
+        
 
         public override void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
         {
             Console.SetCursorPosition(0, 12);
             base.DrawMenu(options, selectedOption);
+        }
+
+        public override void BackButton()
+        {
+            base.BackButton();
+            this.MenuStart();
         }
     }
 }

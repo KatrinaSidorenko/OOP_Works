@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BomberMan
+namespace BomberMan.GameObjects
 {
-    public enum GameCondition
+    internal class StrongTempWall
     {
-        InProgress,
-        TimeLeftEnd,
-        Dead,
-        Victory
     }
 }

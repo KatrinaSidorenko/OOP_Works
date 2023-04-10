@@ -1,7 +1,7 @@
 ﻿using BomberMan;
 using System;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class Program
     {

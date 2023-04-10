@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Homework1_BomberMan
+namespace BomberMan
 {
     public class ScreneRender
     {
@@ -20,7 +20,6 @@ namespace Homework1_BomberMan
             _gameMap.Player.Character = playerChar;
             _keyController = new KeyboardController(_gameMap);
             _timer = new Timer();
-
         }
 
         public void GameProcessRun()
@@ -39,10 +38,12 @@ namespace Homework1_BomberMan
 
         public void PrintCurrentPlayerData()
         {
-            Console.SetCursorPosition(45, 5);
+            Console.SetCursorPosition(45, 9);
             Console.Write($"Player Score: {_gameMap.Player.Score}");
-            Console.SetCursorPosition(45, 7);
-            Console.Write($"Time left: {_timer.GetRestOfTheTime().Seconds}");        
+            Console.SetCursorPosition(45, 11);
+            Console.WriteLine($"{TempWall.TotalAmountOfTempWalls} walls left to destroy");
+            Console.SetCursorPosition(45, 13);
+            Console.Write($"Time left: {_timer.GetRestOfTheTime().ToString(@"mm\:ss")}");        
         }
     }
 }
