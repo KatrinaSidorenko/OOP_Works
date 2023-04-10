@@ -11,16 +11,15 @@ namespace BomberMan
     public class Menu
     {
         public virtual void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
-        {            
-
+        {       
+            
             foreach (var option in options)
             {
                 if (option == selectedOption)
                     Console.Write("--> ");
                 else
                     Console.Write("   ");
-
-                Console.WriteLine(option.OptionName + "  ");
+                Console.Write(option.OptionName + "    ");
             }
         }
 
@@ -30,10 +29,10 @@ namespace BomberMan
             do
             {
                 ki = Console.ReadKey(true);
-                if (ki.Key == ConsoleKey.DownArrow && index + 1 < options.Count)
+                if (ki.Key == ConsoleKey.RightArrow && index + 1 < options.Count)
                     index++;
 
-                if (ki.Key == ConsoleKey.UpArrow && index - 1 >= 0)
+                if (ki.Key == ConsoleKey.LeftArrow && index - 1 >= 0)
                     index--;
 
                 DrawMenu(options, options[index]);
@@ -55,5 +54,6 @@ namespace BomberMan
                 ki = Console.ReadKey(true);
             }
         }
+
     }
 }

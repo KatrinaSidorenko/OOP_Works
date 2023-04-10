@@ -51,11 +51,7 @@ namespace BomberMan
 
         public override void SetGameCondition(Map map)
         {
-            if(map.Player.Y == this.Y &&  map.Player.X == this.X
-                && map.Player.Y == this.Y + 1 && map.Player.X == this.X 
-                && map.Player.Y == this.Y - 1 && map.Player.X == this.X
-                && map.Player.Y == this.Y && map.Player.X == this.X - 1
-                && map.Player.Y == this.Y && map.Player.X == this.X + 1)
+            if(map.Player.Y == this.Y &&  map.Player.X == this.X || map[map.Player.Y, map.Player.X].Character == Constant.BlustWaveChar)
             {
                 Condition = GameCondition.Dead;
             }

@@ -66,7 +66,7 @@ namespace BomberMan
 
         public override void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
         {
-            Console.SetCursorPosition(0, 12);
+            Console.SetCursorPosition(35, 12);
             base.DrawMenu(options, selectedOption);
         }
 

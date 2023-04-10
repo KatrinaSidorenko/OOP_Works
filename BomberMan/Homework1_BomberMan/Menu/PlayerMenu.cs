@@ -25,7 +25,7 @@ namespace BomberMan
                 new GameMenuOption("▲", () => new ScreneRender('▲').GameProcessRun()),
                 new GameMenuOption("▼", () => new ScreneRender('▼').GameProcessRun()),
                 new GameMenuOption("$", () => new ScreneRender('$').GameProcessRun()),
-                new GameMenuOption("~~ Return to main menu ~~", () => new MainMenu().MenuStart())
+                new GameMenuOption("back".ToUpper(), () => new MainMenu().MenuStart())
             };
 
             DrawMenu(_options, _options[_index]);
@@ -34,9 +34,11 @@ namespace BomberMan
 
         public override void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
         {
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine("Choose player character:");
-
+            Console.SetCursorPosition(45, 10);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Choose player character:".ToUpper());
+            Console.ResetColor();
+            Console.SetCursorPosition(30, 12);
             base.DrawMenu(options, selectedOption);
         }
 
