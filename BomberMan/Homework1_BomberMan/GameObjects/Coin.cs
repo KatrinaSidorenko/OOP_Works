@@ -19,36 +19,37 @@ namespace BomberMan
             Console.ResetColor();
         }
 
-        public override void SetObjectIntoMap(Map map, int y, int x)
+        public override void SetObjectIntoMap( int y, int x)
         {
-            if (map[y - 1, x].Character == Constant.BlustWaveChar)
+            var listOfAxisY = new int[] { y - 1, y + 1, x, x};
+            var listOfAxisX = new int[] { x - 1, x + 1, y, y};
+
+            for (int i = 0; i <= 1; i++) 
             {
-                CreateCoin(map, y - 1, x);
+                new EmptySpace().SetObjectIntoMap( listOfAxisY[i], listOfAxisY[i + 2]);
             }
-            if (map[y + 1, x].Character == Constant.BlustWaveChar)
+            for (int i = 0; i <= 1; i++)
             {
-                CreateCoin(map, y + 1, x);
+                new EmptySpace().SetObjectIntoMap(listOfAxisX[i + 2], listOfAxisX[i]);
             }
-            if (map[y, x - 1].Character == Constant.BlustWaveChar)
-            {
-                CreateCoin(map, y , x - 1);
-            }
-            if (map[y, x + 1].Character == Constant.BlustWaveChar)
-            {
-                CreateCoin(map, y, x + 1);
-            }
+
+            base.SetObjectIntoMap(_random.Next(listOfAxisY[0], listOfAxisY[1]), _random.Next(listOfAxisX[0], listOfAxisX[1]));
         }
 
-        private void CreateCoin(Map map, int y, int x)
+        public override bool CanMove(int newY, int newX)
         {
-            if (_random.Next(5) == 1)
-            {
-                base.SetObjectIntoMap(map, y, x);
-            }
-            else
-            {
-                new EmptySpace().SetObjectIntoMap(map, y, x);
-            }
+            return true;
+        }
+
+        public override void Action(int y, int x)
+        {
+            new EmptySpace().SetObjectIntoMap(y, x); 
+            GameProperties.Score++;
+        }
+
+        public override bool CanBeDestroyed()
+        {
+            return true;
         }
     }
 }

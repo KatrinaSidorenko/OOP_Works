@@ -48,7 +48,8 @@ namespace BomberMan
                     break;
             }
 
-            _player.PlayerState(tempX, tempY, _currentMap);
+            //_currentMap[tempY, tempX].Action(tempY, tempX);
+            _player.PlayerAction(tempY, tempX);
         }
     }
 }

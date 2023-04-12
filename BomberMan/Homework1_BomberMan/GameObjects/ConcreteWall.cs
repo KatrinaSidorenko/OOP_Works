@@ -16,5 +16,20 @@ namespace BomberMan
             Console.Write(Character);
             Console.ResetColor();
         }
+
+        public override bool CanMove( int newY, int newX)
+        {
+            return false;
+        }
+
+        public override void Action(int y, int x)
+        {
+            
+        }
+
+        public override bool CanBeDestroyed()
+        {
+            return false;
+        }
     }
 }

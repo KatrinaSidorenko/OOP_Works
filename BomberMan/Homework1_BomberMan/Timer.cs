@@ -21,11 +21,11 @@ namespace BomberMan
             if (DateTime.Now.Subtract(_startTime) > _duration && TempWall.TotalAmountOfTempWalls == 0
                 || DateTime.Now.Subtract(_startTime) < _duration && TempWall.TotalAmountOfTempWalls == 0)
             {
-                GameObject.Condition = GameCondition.Victory;
+                GameProperties.Condition = GameCondition.Victory;
             }
             else if(DateTime.Now.Subtract(_startTime) > _duration)
             {
-                GameObject.Condition = GameCondition.TimeLeftEnd;
+                GameProperties.Condition = GameCondition.TimeLeftEnd;
             }
         }
 

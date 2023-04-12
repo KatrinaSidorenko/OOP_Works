@@ -10,20 +10,26 @@ namespace BomberMan
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public static GameCondition Condition { get; set; }
-        public int Score { get; set; }
+        public static GameObject[,] Scene { get; set; }
         public abstract char Character { get; set; }
-
         public abstract void Draw(int y, int x);
-        
-        public virtual void SetGameCondition(Map map)
+
+        public void Start(ref GameObject[,] scene)
         {
-            Condition = GameCondition.InProgress;
+            Scene = scene;
         }
 
-        public virtual void SetObjectIntoMap(Map map, int y, int x) 
+        public virtual void SetObjectIntoMap(int y, int x) 
         {
-            map[y, x] = this;
+            if (Scene[y, x].CanBeDestroyed())
+            {
+                Scene[y, x] = this;
+            }
         }
+
+        public abstract void Action(int y, int x);
+        public abstract bool CanMove(int newY, int newX);
+
+        public abstract bool CanBeDestroyed();
     }
 }

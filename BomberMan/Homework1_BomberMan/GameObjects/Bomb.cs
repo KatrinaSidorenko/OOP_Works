@@ -21,24 +21,22 @@ namespace BomberMan
             _player = map.Player;
             _bombMap = map;
 
-            base.SetObjectIntoMap(map, Y, X);
-
-            _thread = new Thread(new ThreadStart(CreateBlustWave));
-            _thread.Start();
+            map[Y, X] = this; 
         }
 
 
         private void DeleteBombSurrounding()
         {
-            SetGameCondition(_bombMap);
-            new EmptySpace().SetObjectIntoMap(_bombMap, Y, X);
-            new Coin().SetObjectIntoMap(_bombMap, Y, X);
+            ChangeGameCondition();
+
+            new EmptySpace().SetObjectIntoMap( Y, X);
+            new Coin().SetObjectIntoMap( Y, X);
         }
 
         public void CreateBlustWave()
         {
             Thread.Sleep(2000);
-            new BlustWave().SetObjectIntoMap(_bombMap, Y, X);
+            new BlustWave().SetObjectIntoMap(Y, X);
             Thread.Sleep(1000);            
             DeleteBombSurrounding();
         }
@@ -49,17 +47,32 @@ namespace BomberMan
             Console.Write(Character);
         }
 
-        public override void SetGameCondition(Map map)
+        private void ChangeGameCondition()
         {
-            if(map.Player.Y == this.Y &&  map.Player.X == this.X || map[map.Player.Y, map.Player.X].Character == Constant.BlustWaveChar)
+            if (_player.X == X && _player.Y == Y
+                || _player.X == X - 1 && _player.Y == Y
+                || _player.X == X + 1 && _player.Y == Y
+                || _player.X == X  && _player.Y == Y - 1
+                || _player.X == X && _player.Y == Y + 1)
             {
-                Condition = GameCondition.Dead;
+                GameProperties.Condition = GameCondition.Dead;
             }
-            //if (map[map.Player.Y, map.Player.X].Character == Constant.BombChar || map[map.Player.Y, map.Player.X].Character == Constant.BlustWaveChar)
-            //{
-            //    Condition = GameCondition.Dead;
-            //}
         }
 
+        public override bool CanMove(int newY, int newX)
+        {
+            return false;
+        }
+
+        public override void Action(int y, int x)
+        {
+            _thread = new Thread(new ThreadStart(CreateBlustWave));
+            _thread.Start();
+        }
+
+        public override bool CanBeDestroyed()
+        {
+            return true;
+        }
     } 
 }

@@ -13,22 +13,8 @@ namespace BomberMan
         public Player()
         {
             var rand = new Random();
-            this.X = rand.Next(1, Constant.WindowXSize - 1);
-            this.Y = rand.Next(1, Constant.WindowYSize - 1);
-        }
-
-        public void PlayerState(int x, int y, Map map)
-        {
-            if (map[y, x].Character == Constant.EmptySpaceChar)
-            {
-                X = x;
-                Y = y;
-            }
-            if (map[y, x].Character == Constant.CoinChar)
-            {
-                map[y, x] = new EmptySpace();
-                Score++;
-            }
+            X = rand.Next(1, Constant.WindowXSize - 1);
+            Y = rand.Next(1, Constant.WindowYSize - 1);
         }
 
         public override void Draw(int y, int x)
@@ -39,6 +25,30 @@ namespace BomberMan
             Console.ResetColor();
         }
 
-        
+        public void PlayerAction(int newY, int newX)
+        {
+            Scene[newY, newX].Action(newY, newX);
+
+            if (Scene[newY, newX].CanMove(newY, newX))
+            {
+                this.X = newX;
+                this.Y = newY;
+            }             
+        }
+
+        public override bool CanMove(int newY, int newX)
+        {
+            return false;
+        }
+
+        public override void Action(int y, int x)
+        {
+            
+        }
+
+        public override bool CanBeDestroyed()
+        {
+            return false;
+        }
     }
 }

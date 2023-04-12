@@ -16,34 +16,42 @@ namespace BomberMan
             Console.Write(Character);
         }
 
-        public override void SetObjectIntoMap(Map map, int y, int x)
+        public override void SetObjectIntoMap(int y, int x)
         {
-            if (map[y - 1, x].Character != Constant.ConcreteWallChar)
+            var listOfAxisY = new int[] { y - 1, y + 1, x, x };
+            var listOfAxisX = new int[] { x - 1, x + 1, y, y };
+
+            for (int i = 0; i <= 1; i++)
             {
-                TempWallCounting(map, y-1, x);
-                base.SetObjectIntoMap(map, y - 1, x);
+                DestroyTempWall(listOfAxisY[i], listOfAxisY[i + 2]);
+                base.SetObjectIntoMap(listOfAxisY[i], listOfAxisY[i + 2]);
             }
-            if (map[y + 1, x].Character != Constant.ConcreteWallChar)
+            for (int i = 0; i <= 1; i++)
             {
-                TempWallCounting(map, y + 1, x);
-                base.SetObjectIntoMap(map, y + 1, x);
-            }
-            if (map[y, x + 1].Character != Constant.ConcreteWallChar)
-            {
-                TempWallCounting(map, y, x + 1);
-                base.SetObjectIntoMap(map, y, x + 1);
-            }
-            if (map[y, x - 1].Character != Constant.ConcreteWallChar)
-            {
-                TempWallCounting(map, y, x - 1);
-                base.SetObjectIntoMap(map, y, x - 1);
+                DestroyTempWall(listOfAxisX[i + 2], listOfAxisX[i]);
+                base.SetObjectIntoMap(listOfAxisX[i + 2], listOfAxisX[i]);
             }
         }
 
-        private void TempWallCounting(Map map, int y, int x)
+        private void DestroyTempWall(int y, int x)
         {
-            if (map[y, x].Character == Constant.TempWallChar)
+            if (Scene[y, x].Character == Constant.TempWallChar)
                 TempWall.TotalAmountOfTempWalls--;
+        }
+
+        public override bool CanMove(int newY, int newX)
+        {
+            return false;
+        }
+
+        public override void Action(int y, int x)
+        {
+            
+        }
+
+        public override bool CanBeDestroyed()
+        {
+            return true;
         }
     }
 }

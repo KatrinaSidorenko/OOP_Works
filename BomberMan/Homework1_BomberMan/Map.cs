@@ -20,6 +20,7 @@ namespace BomberMan
         {
             GameObjectsMap = new GameObject[_ySize, _xSize];
             this.FillMap();
+            Player.Start(ref GameObjectsMap);
         }
 
         private void FillMap()
@@ -51,6 +52,7 @@ namespace BomberMan
                 }
             }
 
+            GameObjectsMap[Player.Y, Player.X] = new EmptySpace();
         }
 
         public GameObject this[int y, int x]
@@ -69,7 +71,7 @@ namespace BomberMan
                 for (var j = 0; j < _xSize; j++)
                 {
                     if (i == Player.Y && j == Player.X)
-                    {   
+                    {
                         Player.Draw(i, j);
                     }
                     else

@@ -11,15 +11,15 @@ namespace BomberMan
     {
         public void CheckGameOver()
         {
-            if (GameObject.Condition == GameCondition.Victory)
+            if (GameProperties.Condition == GameCondition.Victory)
             {
                 VictoryGameOver();
             }
-            if (GameObject.Condition == GameCondition.TimeLeftEnd)
+            if (GameProperties.Condition == GameCondition.TimeLeftEnd)
             {
                 GameOverTimeScene();
             }
-            if (GameObject.Condition == GameCondition.Dead)
+            if (GameProperties.Condition == GameCondition.Dead)
             {
                 DeadGameOver();
             }
@@ -85,7 +85,7 @@ namespace BomberMan
 
         public override void BackButton()
         {
-            Console.SetCursorPosition(40,21);
+            Console.SetCursorPosition(40, 21);
             base.BackButton();
             new MainMenu().MenuStart();
         }

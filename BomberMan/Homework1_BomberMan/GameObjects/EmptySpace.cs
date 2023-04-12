@@ -14,5 +14,25 @@ namespace BomberMan
             Console.SetCursorPosition(x + 10, y + 5);
             Console.Write(Character);
         }
+
+        public override bool CanMove(int newY, int newX)
+        {
+            return true;
+        }
+
+        public override void SetObjectIntoMap( int y, int x)
+        {
+            base.SetObjectIntoMap( y, x);
+        }
+
+        public override void Action(int y, int x)
+        {
+          
+        }
+
+        public override bool CanBeDestroyed()
+        {
+            return true;
+        }
     }
 }
