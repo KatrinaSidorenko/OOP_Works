@@ -41,7 +41,7 @@ namespace BomberMan
                     {
                         GameObjectsMap[y, x] = new TempWall();
                     }
-                    else if(RandomGanerator.Next(5,20) == 15)
+                    else if(RandomGanerator.Next(20) == 15)
                     {
                         GameObjectsMap[y, x] = new Coin();
                     }

@@ -10,7 +10,7 @@ namespace BomberMan
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public static GameObject[,] Scene { get; set; }
+        public static  GameObject[,] Scene { get; set; }
         public abstract char Character { get; set; }
         public abstract void Draw(int y, int x);
 

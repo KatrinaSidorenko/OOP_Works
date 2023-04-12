@@ -41,24 +41,24 @@ namespace BomberMan
                               ░         ░      ░  ░       ░  ░   ░  ░                                                                                               
 ");
             Console.ResetColor();
-            this.BackButton();
+            Console.ReadKey(true);
         }
 
         private void VictoryGameOver()
         {
             Console.Clear(); 
-            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(25, 10);
-            Console.WriteLine(@"
+            string text = @"
                           ██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗
                           ██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
                           ██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝ 
                           ╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝  
                            ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║   
                             ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝                                                              
-");
+";
+            Animations.RandomColorAnimation(text, 2);
             Console.ResetColor();
-            this.BackButton();
+            Console.ReadKey(true);
         }
 
         private void DeadGameOver()
@@ -66,29 +66,31 @@ namespace BomberMan
             Console.Clear();
             Console.SetCursorPosition(0, 5);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(@"
+            
+            string text = @"
 
                             ▓██   ██▓ ▒█████   █    ██    ▓█████▄  ██▓▓█████ ▓█████▄ 
-                            ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▒██▀ ██▌▓██▒▓█   ▀ ▒██▀ ██▌
-                            ▒██ ██░▒██░  ██▒▓██  ▒██░   ░██   █▌▒██▒▒███   ░██   █▌
-                            ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░▓█▄   ▌░██░▒▓█  ▄ ░▓█▄   ▌
-                            ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░▒████▓ ░██░░▒████▒░▒████▓ 
-                              ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ▒▒▓  ▒ ░▓  ░░ ▒░ ░ ▒▒▓  ▒ 
-                              ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░     ░ ▒  ▒  ▒ ░ ░ ░  ░ ░ ▒  ▒ 
-                              ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░     ░ ░  ░  ▒ ░   ░    ░ ░  ░ 
-                                ░ ░         ░ ░     ░           ░     ░     ░  ░   ░    
-                                ░ ░                           ░                  ░      
-");
+                             ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▒██▀ ██▌▓██▒▓█   ▀ ▒██▀ ██▌
+                              ▒██ ██░▒██░  ██▒▓██  ▒██░   ░██   █▌▒██▒▒███   ░██   █▌
+                              ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░▓█▄   ▌░██░▒▓█  ▄ ░▓█▄   ▌
+                              ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░▒████▓ ░██░░▒████▒░▒████▓ 
+                                ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ▒▒▓  ▒ ░▓  ░░ ▒░ ░ ▒▒▓  ▒ 
+                               ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░     ░ ▒  ▒  ▒ ░ ░ ░  ░ ░ ▒  ▒ 
+                               ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░     ░ ░  ░  ▒ ░   ░    ░ ░  ░ 
+                                 ░ ░         ░ ░     ░           ░     ░     ░  ░   ░    
+                                  ░ ░                           ░                  ░      
+";
+            Animations.SimpleAnimation(text, 3);
             Console.ResetColor();
-            this.BackButton();
+            Console.ReadKey(true);
         }
 
-        public override void BackButton()
-        {
-            Console.SetCursorPosition(40, 21);
-            base.BackButton();
-            new MainMenu().MenuStart();
-        }
+        //public override void BackButton()
+        //{
+        //    Console.SetCursorPosition(40, 21);
+        //    base.BackButton();
+        //    new MainMenu().MenuStart();
+        //}
     }
 }
 
