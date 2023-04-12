@@ -52,7 +52,7 @@ namespace BomberMan
             Console.WriteLine("The goal of the game: destroy all the walls - 'o' in 2 minutes" +
                 "\nBefore starting the game, you will be given the opportunity to choose the appearance of the player" +
                 "\nSome explanations:" +
-                "\n\t'@' - boma mark" +
+                "\n\t'@' - bomb mark" +
                 "\n\t'#' - indestructible wall" +
                 "\n\t'o' - temporary wall" +
                 "\n\t'.' - explosion trace" +

@@ -16,7 +16,6 @@ namespace BomberMan
         public ScreneRender(char playerChar)
         {
             _gameMap = new Map();
-            //_gameMap.Player.SetGameCondition(_gameMap);
             _gameMap.Player.Character = playerChar;
             _keyController = new KeyboardController(_gameMap);
             _timer = new Timer();
@@ -36,7 +35,7 @@ namespace BomberMan
             }                
         }
 
-        public void PrintCurrentPlayerData()
+        private void PrintCurrentPlayerData()
         {
             Console.SetCursorPosition(45, 9);
             Console.Write($"Player Score: {GameProperties.Score}");

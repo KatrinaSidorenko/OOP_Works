@@ -21,7 +21,7 @@ namespace BomberMan
             }
             if (GameProperties.Condition == GameCondition.Dead)
             {
-                DeadGameOver();
+                DiedGameOver();
             }
         }
         private void GameOverTimeScene()
@@ -61,7 +61,7 @@ namespace BomberMan
             Console.ReadKey(true);
         }
 
-        private void DeadGameOver()
+        private void DiedGameOver()
         {
             Console.Clear();
             Console.SetCursorPosition(0, 5);
@@ -80,7 +80,7 @@ namespace BomberMan
                                  ░ ░         ░ ░     ░           ░     ░     ░  ░   ░    
                                   ░ ░                           ░                  ░      
 ";
-            Animations.SimpleAnimation(text, 3);
+            Animations.SimpleAnimation(text, 1);
             Console.ResetColor();
             Console.ReadKey(true);
         }
