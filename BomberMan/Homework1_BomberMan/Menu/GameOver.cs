@@ -85,7 +85,7 @@ namespace BomberMan
             Console.ReadKey(true);
         }
 
-        //public override void BackButton()
+        //public override void BackButton() Хочу спробувати додати перехід від кінцівки до початкового меню
         //{
         //    Console.SetCursorPosition(40, 21);
         //    base.BackButton();

@@ -16,7 +16,7 @@ namespace BomberMan
         public void MenuStart()
         {
             Console.Clear();
-            Console.Title = "BomberMan Menu";
+            Console.Title = "BomberMan";
             Console.CursorVisible = false;
             Console.WindowHeight = Console.BufferHeight = 30;
             Console.SetCursorPosition(0, 2);
