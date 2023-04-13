@@ -11,7 +11,6 @@ namespace BomberMan
     public class Bomb : GameObject
     {
         public override char Character { get; set; } = Constant.BombChar;
-        private Map _bombMap;
         private Thread _thread;
         private Player _player;
         public Bomb(Map map)
@@ -19,7 +18,6 @@ namespace BomberMan
             this.X = map.Player.X;
             this.Y = map.Player.Y;
             _player = map.Player;
-            _bombMap = map;
 
             map[Y, X] = this; 
         }
@@ -49,11 +47,10 @@ namespace BomberMan
 
         private void ChangeGameCondition()
         {
-            if (_player.X == X && _player.Y == Y
-                || _player.X == X - 1 && _player.Y == Y
-                || _player.X == X + 1 && _player.Y == Y
-                || _player.X == X  && _player.Y == Y - 1
-                || _player.X == X && _player.Y == Y + 1)
+            var axisX = new int[] { X, X - 1, X + 1 };
+            var axisY = new int[] {Y, Y - 1, Y + 1 };
+            
+            if(axisX.Contains(_player.X) && axisY.Contains(_player.Y) )
             {
                 GameProperties.Condition = GameCondition.Dead;
             }

@@ -25,10 +25,7 @@ namespace BomberMan
             base.SetObjectIntoMap( y, x);
         }
 
-        public override void Action(int y, int x)
-        {
-          
-        }
+        public override void Action(int y, int x){}
 
         public override bool CanBeDestroyed()
         {

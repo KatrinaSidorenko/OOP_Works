@@ -41,10 +41,7 @@ namespace BomberMan
             return false;
         }
 
-        public override void Action(int y, int x)
-        {
-            
-        }
+        public override void Action(int y, int x){}
 
         public override bool CanBeDestroyed()
         {

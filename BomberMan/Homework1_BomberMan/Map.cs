@@ -37,7 +37,7 @@ namespace BomberMan
                     {
                         GameObjectsMap[y, x] = new ConcreteWall();
                     }
-                    else if (RandomGanerator.Next(15) == 1)
+                    else if (RandomGanerator.Next(10) == 1)
                     {
                         GameObjectsMap[y, x] = new TempWall();
                     }
