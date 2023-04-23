@@ -47,14 +47,14 @@ namespace Bomberman
         private void HowToPlay()
         {
             Console.Clear();
-            Console.WriteLine("The goal of the game: destroy all the walls - 'o' in 2 minutes" +
+            Console.WriteLine("The goal of the game:".ToUpper() + "destroy all the walls - 'o' in 2 minutes" +
                 "\nBefore starting the game, you will be given the opportunity to choose the appearance of the player" +
                 "\nSome explanations:" +
                 "\n\t'@' - bomb mark" +
                 "\n\t'#' - indestructible wall" +
-                "\n\t'o' - temporary wall" +
+                "\n\t'o' - temporary wall (this type of walls can has different strength)" +
                 "\n\t'.' - explosion trace" +
-                "\n\t'♦' - coin" +
+                "\n\t'♦' - coin (here is differnt types of coin)" +
                 "\nWARNING!! If you stay near the bomb for a long time, the explosion will kill you");
             Console.WriteLine();
             this.BackButton();

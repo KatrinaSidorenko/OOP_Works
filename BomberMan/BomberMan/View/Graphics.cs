@@ -15,16 +15,10 @@ namespace Bomberman
         public Graphics(GameLogic gameLogic) 
         {
             _gameLogic = gameLogic;
-        }
-        public void GetInfo()
-        {
             _currentMap = _gameLogic.MainMap;
         }
-
         public void DrawMap()
         {
-            GetInfo();
-
             for (var i = 0; i < Constant.WindowYSize; i++)
             {
                 for (var j = 0; j < Constant.WindowXSize; j++)
@@ -33,7 +27,6 @@ namespace Bomberman
                 }
                 Console.WriteLine();
             }
-
             PrintCurrentPlayerData();
         }
 

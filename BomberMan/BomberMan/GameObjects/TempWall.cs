@@ -8,6 +8,7 @@ namespace Bomberman.GameObjects
 {
     public class TempWall : GameObject
     {
+        public virtual int Strengh { get; set; } = 1;
         public TempWall(ref int amount)
         {
             amount++;
@@ -18,9 +19,14 @@ namespace Bomberman.GameObjects
 
         public override bool CanBeDestroyed => true;
 
+
         public override void Action(GameLogic game)
         {
-            game.Walls--;
+            Strengh--;
+            if (Strengh == 0)
+            {
+                game.Walls--;               
+            }            
         }
 
         public override void Draw(int y, int x)

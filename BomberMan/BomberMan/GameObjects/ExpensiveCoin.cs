@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace Bomberman.GameObjects
 {
-    public class BlustWave : GameObject
+    public class ExpensiveCoin : Coin
     {
-        public override char Character { get; set; } = Constant.BlustWaveChar;
-
-        public override bool CanMoveThrough => false;
-
-        public override bool CanBeDestroyed => true;
+        public override void Action(GameLogic game)
+        {
+            game.Score += 2;
+        }
 
         public override void Draw(int y, int x)
         {
             Console.SetCursorPosition(x + 10, y + 5);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(Character);
-        }       
+            Console.ResetColor();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,24 +10,26 @@ namespace Bomberman
 {
     public class GameOver : Menu
     {
-        public static void CheckGameOver(GameCondition condition)
+        public void CheckGameOver(GameCondition condition)
         {
-            if (condition == GameCondition.Victory)
+            switch (condition)
             {
-                VictoryGameOver();
-            }
-            if (condition == GameCondition.TimeLeftEnd)
-            {
-                GameOverTimeScene();
-            }
-            if (condition == GameCondition.Dead)
-            {
-                DiedGameOver();
+                case GameCondition.Victory:
+                    VictoryGameOver();
+                    break;
+                case GameCondition.TimeLeftEnd:
+                    GameOverTimeScene();
+                    break;
+                case GameCondition.Dead:
+                    DiedGameOver();
+                    break;
             }
         }
-        public static void GameOverTimeScene()
+        public void GameOverTimeScene()
         {
             Console.Clear();
+            Console.SetCursorPosition(45, 5);
+            Console.WriteLine($"Player {FileManager.GatPlayerName()} your time left".ToUpper());
             Console.SetCursorPosition(10, 10);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(@"
@@ -41,12 +44,14 @@ namespace Bomberman
                               ░         ░      ░  ░       ░  ░   ░  ░                                                                                               
 ");
             Console.ResetColor();
-            Console.ReadKey(true);
+            BackButton();
         }
 
-        public static void VictoryGameOver()
+        public  void VictoryGameOver()
         {
-            Console.Clear(); 
+            Console.Clear();
+            Console.SetCursorPosition(50, 5);
+            Console.WriteLine($"Player {FileManager.GatPlayerName()} you win".ToUpper());
             Console.SetCursorPosition(25, 10);
             string text = @"
                           ██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗
@@ -58,39 +63,41 @@ namespace Bomberman
 ";
             Animations.RandomColorAnimation(text, 2);
             Console.ResetColor();
-            Console.ReadKey(true);
+            BackButton();
         }
 
-        public static void DiedGameOver()
+        public void DiedGameOver()
         {
             Console.Clear();
-            Console.SetCursorPosition(0, 5);
+            Console.SetCursorPosition(35, 5);
+            Console.WriteLine($"Player {FileManager.GatPlayerName()} you died because you were hit by a bomb".ToUpper());
+            Console.SetCursorPosition(0, 7);
             Console.ForegroundColor = ConsoleColor.Red;
             
             string text = @"
 
-                            ▓██   ██▓ ▒█████   █    ██    ▓█████▄  ██▓▓█████ ▓█████▄ 
-                             ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▒██▀ ██▌▓██▒▓█   ▀ ▒██▀ ██▌
-                              ▒██ ██░▒██░  ██▒▓██  ▒██░   ░██   █▌▒██▒▒███   ░██   █▌
-                              ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░▓█▄   ▌░██░▒▓█  ▄ ░▓█▄   ▌
-                              ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░▒████▓ ░██░░▒████▒░▒████▓ 
-                                ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ▒▒▓  ▒ ░▓  ░░ ▒░ ░ ▒▒▓  ▒ 
-                               ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░     ░ ▒  ▒  ▒ ░ ░ ░  ░ ░ ▒  ▒ 
-                               ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░     ░ ░  ░  ▒ ░   ░    ░ ░  ░ 
-                                 ░ ░         ░ ░     ░           ░     ░     ░  ░   ░    
+                                ▓██   ██▓ ▒█████   █    ██    ▓█████▄  ██▓▓█████ ▓█████▄ 
+                                ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▒██▀ ██▌▓██▒▓█   ▀ ▒██▀ ██▌
+                                 ▒██ ██░▒██░  ██▒▓██  ▒██░   ░██   █▌▒██▒▒███   ░██   █▌
+                                 ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░▓█▄   ▌░██░▒▓█  ▄ ░▓█▄   ▌
+                                 ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░▒████▓ ░██░░▒████▒░▒████▓ 
+                                   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ▒▒▓  ▒ ░▓  ░░ ▒░ ░ ▒▒▓  ▒ 
+                                  ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░     ░ ▒  ▒  ▒ ░ ░ ░  ░ ░ ▒  ▒ 
+                                  ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░     ░ ░  ░  ▒ ░   ░    ░ ░  ░ 
+                                  ░ ░         ░ ░     ░           ░     ░     ░  ░   ░    
                                   ░ ░                           ░                  ░      
 ";
             Animations.SimpleAnimation(text, 1);
             Console.ResetColor();
-            Console.ReadKey(true);
+            BackButton();
         }
 
-        //public override void BackButton() Хочу спробувати додати перехід від кінцівки до початкового меню
-        //{
-        //    Console.SetCursorPosition(40, 21);
-        //    base.BackButton();
-        //    new MainMenu().MenuStart();
-        //}
+        public override void BackButton() 
+        {
+            Console.SetCursorPosition(40, 21);
+            base.BackButton();
+            new MainGameLoop().GameStart();
+        }
     }
 }
 

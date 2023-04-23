@@ -1,4 +1,5 @@
 ﻿using System;
+using Bomberman;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,14 @@ namespace Bomberman.GameObjects
 {
     public class Player : GameObject
     {
-        public Player()
-        {
-            SetCharacter();
-        }
         public override char Character { get; set; } 
         public override bool CanMoveThrough => true;
 
         public override bool CanBeDestroyed => false;
-
+        public Player()
+        {
+            Character = FileManager.SetCharacter();
+        }
         public override void Action(GameLogic game)
         {
             game.Condition = GameCondition.Dead;
@@ -31,12 +31,5 @@ namespace Bomberman.GameObjects
             Console.ResetColor();
         }
 
-        private void SetCharacter()
-        {
-            StreamReader sr = new StreamReader("C:\\Users\\Lenovo\\Desktop\\OOP_Works\\BomberMan\\BomberMan\\PlayerProperties.txt");
-            char character = char.Parse(sr.ReadLine());
-            Character = character;
-            sr.Close();
-        }
     }
 }

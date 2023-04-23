@@ -8,7 +8,6 @@ namespace Bomberman
 {
     public class Constant
     {
-        //public const char PlayerChar = 'I';
         public const char BombChar = '@';
         public const char ConcreteWallChar = '█';
         public const char TempWallChar = 'o';

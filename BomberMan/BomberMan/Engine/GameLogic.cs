@@ -21,6 +21,7 @@ namespace Bomberman
         private Queue<(int, int)> _bombCoordinates = new Queue<(int, int)>();
         private Thread _thread;
         private InputController _inputController = new InputController();
+        private GameOver _gameOver = new GameOver();
         private GamePhisics _gamePhisics;
 
         public GameLogic() 
@@ -35,9 +36,8 @@ namespace Bomberman
         public void ProcessGameLogic()
         {
             var input = _inputController.GetInput();
-            
             Timer.GemaOverTimeCheck();
-            GameOver.CheckGameOver(Condition);
+            _gameOver.CheckGameOver(Condition);
 
             Dictionary<PlayerAction, Action> actionCollection = new Dictionary<PlayerAction, Action>()
             {
@@ -49,7 +49,11 @@ namespace Bomberman
                 { PlayerAction.End, CloseWindowRequire }
             };
 
-            actionCollection[input].Invoke();
+            if (input != PlayerAction.None)
+            {
+                actionCollection[input].Invoke();
+            }
+                    
         }
         private void CloseWindowRequire()
         {
@@ -119,8 +123,7 @@ namespace Bomberman
                 else
                 {
                     break;
-                }
-                
+                }               
             }
 
             _gamePhisics.CreateBomb(tempY, tempX);
@@ -138,6 +141,8 @@ namespace Bomberman
                 var coordinates = CheckOnTempWallAndPlayerAround(_bombCoordinates.Peek().Item1, _bombCoordinates.Peek().Item2);
                 coordinates.Add(_bombCoordinates.Dequeue());
                 _gamePhisics.CreateBlustWave(coordinates);
+                Thread.Sleep(1000);
+                _gamePhisics.ClearBombSurrounding(coordinates);
             }
         }
 
@@ -145,13 +150,26 @@ namespace Bomberman
         {
             List<(int, int)> coordinatesForDestroy = new List<(int, int)> ();
             List<(int, int)> nodes = new List<(int, int)>() { (y - 1, x), (y + 1, x), (y, x + 1), (y, x - 1) };
+
             foreach (var coordianate in nodes)
             {
-                MainMap[coordianate.Item1, coordianate.Item2].Action(this);
+                var element = MainMap[coordianate.Item1, coordianate.Item2];
+                element.Action(this);
 
-                if(MainMap[coordianate.Item1, coordianate.Item2].CanBeDestroyed)
+                if(element.CanBeDestroyed)
                 {
-                    coordinatesForDestroy.Add(coordianate);
+                    if(element is TempWall temWall)
+                    {
+                        if(temWall.Strengh == 0)
+                        {
+                            coordinatesForDestroy.Add(coordianate);
+                        }
+                    }
+                    else
+                    {
+                        coordinatesForDestroy.Add(coordianate);
+                    }
+                    
                 }
             }
 

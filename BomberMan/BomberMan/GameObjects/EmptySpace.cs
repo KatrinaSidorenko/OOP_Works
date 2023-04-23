@@ -14,8 +14,6 @@ namespace Bomberman.GameObjects
 
         public override bool CanBeDestroyed => true;
 
-        public override void Action(GameLogic game){}
-
         public override void Draw(int y, int x)
         {
             Console.SetCursorPosition(x + 10, y + 5);

@@ -12,7 +12,6 @@ namespace Bomberman.GameObjects
         public abstract bool CanMoveThrough { get; }
         public abstract bool CanBeDestroyed { get; }
         public abstract void Draw(int y, int x);
-
-        public abstract void Action(GameLogic game); 
+        public virtual void Action(GameLogic game){} 
     }
 }

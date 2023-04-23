@@ -58,10 +58,11 @@ namespace Bomberman
             foreach (var coord in coordibates)
             {
                 _map[coord.Item1, coord.Item2] = new BlustWave();
-            }
+            }  
+        }
 
-            Thread.Sleep(1000);
-
+        public void ClearBombSurrounding(List<(int, int)> coordibates)
+        {
             foreach (var coord in coordibates)
             {
                 _map[coord.Item1, coord.Item2] = new EmptySpace();

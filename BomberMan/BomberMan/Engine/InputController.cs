@@ -9,7 +9,6 @@ namespace Bomberman
 {
     public class InputController
     {
-        //private GameLogic _gameLogic = new GameLogic();
         public PlayerAction GetInput()
         {
             ConsoleKeyInfo ki = Console.ReadKey(true);

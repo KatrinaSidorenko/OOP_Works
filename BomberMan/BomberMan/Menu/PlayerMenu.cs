@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Bomberman
 {
@@ -20,14 +21,15 @@ namespace Bomberman
 
             _options = new List<GameMenuOption>
             {
-                new GameMenuOption("♣", () => WriteIntoFile("♣")),
-                new GameMenuOption("I", () => WriteIntoFile("I")),
-                new GameMenuOption("▲", () => WriteIntoFile("▲")),
-                new GameMenuOption("▼", () => WriteIntoFile("▼")),
-                new GameMenuOption("$", () => WriteIntoFile("$")),
+                new GameMenuOption("♣", () => FileManager.WriteCharacterIntoFile("♣")),
+                new GameMenuOption("I", () => FileManager.WriteCharacterIntoFile("I")),
+                new GameMenuOption("▲", () => FileManager.WriteCharacterIntoFile("▲")),
+                new GameMenuOption("▼", () => FileManager.WriteCharacterIntoFile("▼")),
+                new GameMenuOption("$", () => FileManager.WriteCharacterIntoFile("$")),
                 new GameMenuOption("back".ToUpper(), () => new MainMenu().MenuStart())
             };
 
+            GetPlayerName();
             DrawMenu(_options, _options[_index]);
             base.HandleOptions(_options, _index);
         }
@@ -39,20 +41,19 @@ namespace Bomberman
             Console.WriteLine("Choose player character:".ToUpper());
             Console.ResetColor();
             Console.SetCursorPosition(30, 12);
-            base.DrawMenu(options, selectedOption);
+            base.DrawMenu(options, selectedOption);           
         }
 
-        private void WriteIntoFile(string character)
+        private void GetPlayerName()
         {
-            var path = "C:\\Users\\Lenovo\\Desktop\\OOP_Works\\BomberMan\\BomberMan\\PlayerProperties.txt";
-            var lines = File.ReadAllLines(path).ToList();
-            lines.RemoveAt(0);
-            File.WriteAllLines(path, lines);
-
-            StreamWriter sw = new StreamWriter(path);
-            sw.WriteLine(character);
-            sw.Close();
+            Console.SetCursorPosition(47, 10);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Enter your name:".ToUpper());
+            Console.ResetColor();
+            Console.SetCursorPosition(52, 12);
+            string playerName = Console.ReadLine();
+            FileManager.WritePlayerNameIntoFile(playerName);
+            Console.Clear();
         }
-
     }
 }

@@ -42,11 +42,25 @@ namespace Bomberman
                     }
                     else if (_rand.Next(10) == 1)
                     {
-                        _gameObjectsMap[y, x] = new TempWall(ref TotalAmountOfTempWalls);
+                        if (_rand.Next(1, 8) == 1 || _rand.Next(2, 10) == 5) 
+                        {
+                            _gameObjectsMap[y, x] = new TempWall(ref TotalAmountOfTempWalls);
+                        }
+                        else
+                        {
+                            _gameObjectsMap[y, x] = new StrongTempWall(ref TotalAmountOfTempWalls);
+                        }                        
                     }
                     else if (_rand.Next(20) == 15)
-                    {   
-                        _gameObjectsMap[y, x] = new Coin();
+                    { 
+                        if(_rand.Next(1,5) == 1)
+                        {
+                            _gameObjectsMap[y, x] = new ExpensiveCoin();
+                        }
+                        else
+                        {
+                            _gameObjectsMap[y, x] = new Coin();
+                        }    
                     }
                     else
                     {
