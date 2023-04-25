@@ -16,7 +16,7 @@ namespace Bomberman.GameObjects
         public override bool CanBeDestroyed => false;
         public Player()
         {
-            Character = FileManager.SetCharacter();
+            Character = FileManager.GetCharacter();
         }
         public override void Action(GameLogic game)
         {

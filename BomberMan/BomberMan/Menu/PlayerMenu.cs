@@ -13,7 +13,7 @@ namespace Bomberman
         private static List<GameMenuOption> _options;
         private static int _index;
 
-        public void PlayerCharacterMenuStart()
+        public void PlayerMenuStart()
         {
             Console.Clear();
             Console.Title = "BomberMan Menu";

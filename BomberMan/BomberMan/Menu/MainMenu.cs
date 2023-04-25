@@ -34,7 +34,7 @@ namespace Bomberman
                 new GameMenuOption("Start Play", () =>
                 {
                     Console.Clear();
-                    new PlayerMenu().PlayerCharacterMenuStart();
+                    new PlayerMenu().PlayerMenuStart();
                 }),
                 new GameMenuOption("Game Rules", () => HowToPlay()),
                 new GameMenuOption("Exit", () => Environment.Exit(0))

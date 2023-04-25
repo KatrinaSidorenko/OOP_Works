@@ -17,7 +17,7 @@ namespace Bomberman
             _gameLogic = gameLogic;
             _currentMap = _gameLogic.MainMap;
         }
-        public void DrawMap()
+        public void DrawScene()
         {
             for (var i = 0; i < Constant.WindowYSize; i++)
             {

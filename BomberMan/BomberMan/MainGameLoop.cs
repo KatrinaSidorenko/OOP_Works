@@ -29,7 +29,7 @@ namespace Bomberman
 
             while(true)
             {
-                _graphics.DrawMap();
+                _graphics.DrawScene();
                 _logic.ProcessGameLogic();
             }  
         }

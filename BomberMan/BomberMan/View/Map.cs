@@ -49,7 +49,7 @@ namespace Bomberman
                         else
                         {
                             _gameObjectsMap[y, x] = new StrongTempWall(ref TotalAmountOfTempWalls);
-                        }                        
+                        }
                     }
                     else if (_rand.Next(20) == 15)
                     { 

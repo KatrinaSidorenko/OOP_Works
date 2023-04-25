@@ -138,7 +138,7 @@ namespace Bomberman
 
             if(!(_bombCoordinates.Count() == 0))
             {
-                var coordinates = CheckOnTempWallAndPlayerAround(_bombCoordinates.Peek().Item1, _bombCoordinates.Peek().Item2);
+                var coordinates = CheckBombSurrounding(_bombCoordinates.Peek().Item1, _bombCoordinates.Peek().Item2);
                 coordinates.Add(_bombCoordinates.Dequeue());
                 _gamePhisics.CreateBlustWave(coordinates);
                 Thread.Sleep(1000);
@@ -146,7 +146,7 @@ namespace Bomberman
             }
         }
 
-        private List<(int, int)> CheckOnTempWallAndPlayerAround(int y, int x)
+        private List<(int, int)> CheckBombSurrounding(int y, int x)
         {
             List<(int, int)> coordinatesForDestroy = new List<(int, int)> ();
             List<(int, int)> nodes = new List<(int, int)>() { (y - 1, x), (y + 1, x), (y, x + 1), (y, x - 1) };

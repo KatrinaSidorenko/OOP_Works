@@ -25,7 +25,7 @@ namespace Bomberman
                     break;
             }
         }
-        public void GameOverTimeScene()
+        private void GameOverTimeScene()
         {
             Console.Clear();
             Console.SetCursorPosition(45, 5);
@@ -47,7 +47,7 @@ namespace Bomberman
             BackButton();
         }
 
-        public  void VictoryGameOver()
+        private void VictoryGameOver()
         {
             Console.Clear();
             Console.SetCursorPosition(50, 5);
@@ -66,7 +66,7 @@ namespace Bomberman
             BackButton();
         }
 
-        public void DiedGameOver()
+        private void DiedGameOver()
         {
             Console.Clear();
             Console.SetCursorPosition(35, 5);

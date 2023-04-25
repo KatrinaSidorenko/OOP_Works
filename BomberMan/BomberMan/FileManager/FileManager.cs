@@ -17,7 +17,7 @@ namespace Bomberman
             File.AppendAllText(_path, character);
         }
 
-        public static char SetCharacter()
+        public static char GetCharacter()
         {
             var lines = File.ReadAllLines(_path).ToList();
 
