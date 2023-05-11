@@ -52,15 +52,15 @@ namespace Bomberman
                         }
                     }
                     else if (_rand.Next(20) == 15)
-                    { 
-                        if(_rand.Next(1,5) == 1)
+                    {
+                        if (_rand.Next(1, 5) == 1)
                         {
                             _gameObjectsMap[y, x] = new ExpensiveCoin();
                         }
                         else
                         {
                             _gameObjectsMap[y, x] = new Coin();
-                        }    
+                        }
                     }
                     else
                     {

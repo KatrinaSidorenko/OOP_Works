@@ -53,20 +53,22 @@ namespace Bomberman
             _map[y, x] = new Bomb();            
         }
 
-        public void CreateBlustWave(List<(int, int)> coordibates)
+        private void CreateObjectsHelper(List<(int, int)> coordinates, Type objType)
         {
-            foreach (var coord in coordibates)
+            foreach (var coord in coordinates)
             {
-                _map[coord.Item1, coord.Item2] = new BlustWave();
-            }  
+                _map[coord.Item1, coord.Item2] = (GameObject)Activator.CreateInstance(objType);
+            }
         }
 
-        public void ClearBombSurrounding(List<(int, int)> coordibates)
+        public void CreateBlustWave(List<(int, int)> coordinates)
         {
-            foreach (var coord in coordibates)
-            {
-                _map[coord.Item1, coord.Item2] = new EmptySpace();
-            }
+            CreateObjectsHelper(coordinates, new BlustWave().GetType()); 
+        }
+
+        public void ClearBombSurrounding(List<(int, int)> coordinates)
+        {
+            CreateObjectsHelper(coordinates, new EmptySpace().GetType());
         }
     }
 }
