@@ -11,27 +11,42 @@ namespace Bomberman
         private MainMenu _menu;
         private GameLogic _logic;
         private Graphics _graphics;
+        private InputController _inputController;
 
         public MainGameLoop()
         {
-            _menu = new MainMenu();  
+            _menu = new MainMenu();
+            _logic = new GameLogic();
+            _graphics = new Graphics(_logic);
+            _inputController = new InputController();
         }
 
         public void GameStart()
-        {
-            _menu.MenuStart();
-            _logic = new GameLogic();
-            _graphics = new Graphics(_logic);
+        {           
+            var mainLoop = true;
+            while (mainLoop)
+            {
+                bool loop = true;
+                Console.Clear();
+                Console.CursorVisible = false;
+                Console.WindowHeight = Console.BufferHeight = 30;
+
+                _menu.ProcessMenuSatrt();
+
+                Console.Clear();
+
+                while (loop)
+                {
+                    _graphics.DrawScene();
+                    var inputAction = _inputController.GetInput();
+                    loop = _logic.ProcessGameLogic(inputAction);
+                }
+
+                mainLoop = !(new Menu().WaitForEnterButton());
+            }
 
             Console.Clear();
-            Console.CursorVisible = false;
-            Console.WindowHeight = Console.BufferHeight = 30;
-
-            while(true)
-            {
-                _graphics.DrawScene();
-                _logic.ProcessGameLogic();
-            }  
+            Environment.Exit(0);
         }
     }
 }

@@ -8,10 +8,24 @@ namespace Bomberman
 {
     public class MainMenu : Menu
     {
-        private static List<GameMenuOption> _options;
-        private static int _index;
+        private List<GameMenuOption> _options;
+        private int _index;
+
+        public MainMenu()
+        {
+            _options = new List<GameMenuOption>()
+            {
+                new GameMenuOption("Start Play", () =>
+                {
+                    Console.Clear();
+                    new PlayerMenu().ProcessPlayerMenu();
+                }),
+                new GameMenuOption("Game Rules", () => ProcessHowToPlay()),
+                new GameMenuOption("Exit", () => Environment.Exit(0))
+            };
+        }
         
-        public void MenuStart()
+        public void ShowMenuStart()
         {
             Console.Clear();
             Console.Title = "BomberMan";
@@ -27,24 +41,22 @@ namespace Bomberman
                       ██████╔╝╚██████╔╝██║ ╚═╝ ██║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║██║ ╚████║
                       ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝                                            
 "
-            );
-
-            _options = new List<GameMenuOption>
-            {
-                new GameMenuOption("Start Play", () =>
-                {
-                    Console.Clear();
-                    new PlayerMenu().PlayerMenuStart();
-                }),
-                new GameMenuOption("Game Rules", () => HowToPlay()),
-                new GameMenuOption("Exit", () => Environment.Exit(0))
-            };
-
-            DrawMenu(_options, _options[_index]);
-            base.HandleOptions(_options, _index);
+            );           
         }
 
-        private void HowToPlay()
+        public void ProcessMenuSatrt()
+        {
+            bool loop = true;
+
+            while (loop)
+            {
+                ShowMenuStart();
+                DrawMenu(_options, _options[_index]);
+                loop = base.HandleOptions(_options, _index);
+            } 
+        }
+
+        private void ShowHowToPlay()
         {
             Console.Clear();
             Console.WriteLine("The goal of the game:".ToUpper() + "destroy all the walls - 'o' in 2 minutes" +
@@ -57,21 +69,24 @@ namespace Bomberman
                 "\n\t'♦' - coin (here is differnt types of coin)" +
                 "\nWARNING!! If you stay near the bomb for a long time, the explosion will kill you");
             Console.WriteLine();
-            this.BackButton();
         }
-
-        
 
         public override void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
         {
-            Console.SetCursorPosition(35, 12);
+            Console.SetCursorPosition(45, 12);
             base.DrawMenu(options, selectedOption);
         }
 
-        public override void BackButton()
+        private void ProcessHowToPlay()
         {
-            base.BackButton();
-            this.MenuStart();
+            bool loop = true;
+            while (loop)
+            {
+                ShowHowToPlay();
+                loop = base.WaitForEnterButton();
+            }
+
+            ProcessMenuSatrt();
         }
     }
 }

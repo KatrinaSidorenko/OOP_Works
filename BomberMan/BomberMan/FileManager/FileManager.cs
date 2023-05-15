@@ -37,7 +37,7 @@ namespace Bomberman
             File.WriteAllLines(_path, lines);
         }
 
-        public static string GatPlayerName()
+        public static string GetPlayerName()
         {
             var lines = File.ReadAllLines(_path).ToList();
 

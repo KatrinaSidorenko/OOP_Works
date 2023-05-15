@@ -6,23 +6,17 @@ using System.Threading.Tasks;
 
 namespace Bomberman.GameObjects
 {
-    public class Coin : GameObject
+    public class ExpensiveCoin : Coin
     {
-        public override char Character { get; set; } = Constant.CoinChar;
-
-        public override bool CanMoveThrough => true;
-
-        public override bool CanBeDestroyed => true;
-
         public override void Action(GameLogic game)
         {
-            game.Score++;
+            game.Score += 2;
         }
 
         public override void Draw(int y, int x)
         {
-            Console.SetCursorPosition(x + 10, y + 5);
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            base.Draw(y, x);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(Character);
             Console.ResetColor();
         }

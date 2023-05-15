@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bomberman.Enums
 {
-    public class Constant
+    public enum Direction
     {
-        public const int BorderIndentX = 10;
-        public const int BorderIndentY = 5;
+        Up,
+        Down,
+        Left,
+        Right
     }
 }

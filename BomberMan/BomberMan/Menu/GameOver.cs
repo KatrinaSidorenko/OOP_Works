@@ -10,26 +10,26 @@ namespace Bomberman
 {
     public class GameOver : Menu
     {
-        public void CheckGameOver(GameCondition condition)
+        public void CheckGameOver(GameState condition)
         {
             switch (condition)
             {
-                case GameCondition.Victory:
-                    VictoryGameOver();
+                case GameState.Victory:
+                    PrintVictoryScene();
                     break;
-                case GameCondition.TimeLeftEnd:
-                    GameOverTimeScene();
+                case GameState.TimeLeftEnd:
+                    PrintTimeLeftScene();
                     break;
-                case GameCondition.Dead:
-                    DiedGameOver();
+                case GameState.Dead:
+                    PrintDiedScene();
                     break;
             }
         }
-        private void GameOverTimeScene()
+        private void PrintTimeLeftScene()
         {
             Console.Clear();
             Console.SetCursorPosition(45, 5);
-            Console.WriteLine($"Player {FileManager.GatPlayerName()} your time left".ToUpper());
+            Console.WriteLine($"Player {FileManager.GetPlayerName()} your time left".ToUpper());
             Console.SetCursorPosition(10, 10);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(@"
@@ -44,14 +44,13 @@ namespace Bomberman
                               ░         ░      ░  ░       ░  ░   ░  ░                                                                                               
 ");
             Console.ResetColor();
-            BackButton();
         }
 
-        private void VictoryGameOver()
+        private void PrintVictoryScene()
         {
             Console.Clear();
             Console.SetCursorPosition(50, 5);
-            Console.WriteLine($"Player {FileManager.GatPlayerName()} you win".ToUpper());
+            Console.WriteLine($"Player {FileManager.GetPlayerName()} you win".ToUpper());
             Console.SetCursorPosition(25, 10);
             string text = @"
                           ██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗
@@ -61,16 +60,15 @@ namespace Bomberman
                            ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║   
                             ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝                                                              
 ";
-            Animations.RandomColorAnimation(text, 2);
+            Animations.CreateRandomColorAnimation(text, 2);
             Console.ResetColor();
-            BackButton();
         }
 
-        private void DiedGameOver()
+        private void PrintDiedScene()
         {
             Console.Clear();
             Console.SetCursorPosition(35, 5);
-            Console.WriteLine($"Player {FileManager.GatPlayerName()} you died because you were hit by a bomb".ToUpper());
+            Console.WriteLine($"Player {FileManager.GetPlayerName()} you died because you were hit by a bomb".ToUpper());
             Console.SetCursorPosition(0, 7);
             Console.ForegroundColor = ConsoleColor.Red;
             
@@ -87,16 +85,8 @@ namespace Bomberman
                                   ░ ░         ░ ░     ░           ░     ░     ░  ░   ░    
                                   ░ ░                           ░                  ░      
 ";
-            Animations.SimpleAnimation(text, 1);
+            Animations.CreateSimpleAnimation(text, 1);
             Console.ResetColor();
-            BackButton();
-        }
-
-        public override void BackButton() 
-        {
-            Console.SetCursorPosition(40, 21);
-            base.BackButton();
-            new MainGameLoop().GameStart();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Bomberman
 {
     public static class Animations
     {
-        public static void SimpleAnimation(string text, int delay)
+        public static void CreateSimpleAnimation(string text, int delay)
         {            
             for(int i = 0; i < text.Length; i++)
             {
@@ -18,7 +18,7 @@ namespace Bomberman
             }
         }
 
-        public static void RandomColorAnimation(string text, int delay)
+        public static void CreateRandomColorAnimation(string text, int delay)
         {
             var random = new Random();
             for (int i = 0; i < text.Length; i++)

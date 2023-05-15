@@ -10,29 +10,28 @@ using Bomberman.GameObjects;
 namespace Bomberman
 {
     public class Map
-    {
-        private GameObject[,] _gameObjectsMap;
+    {       
         public int TotalAmountOfTempWalls;
         public int PlayerXCoordiante;
         public int PlayerYCoordiante;
-        private int _xSize = Constant.WindowXSize;
-        private int _ySize = Constant.WindowYSize;
+        public const int MapXSize = 30;
+        public const int MapYSize = 16;
+        private GameObject[,] _gameObjectsMap;
         private Random _rand = new Random();
 
         public Map()
         {
-            _gameObjectsMap = new GameObject[_ySize, _xSize];            
-            this.FillMap();
-            
+            _gameObjectsMap = new GameObject[MapYSize, MapXSize];            
+            FillMap(); 
         }
 
         private void FillMap()
         {
-            for (int y = 0; y < _ySize; y++)
+            for (int y = 0; y < MapYSize; y++)
             {
-                for (int x = 0; x < _xSize; x++)
+                for (int x = 0; x < MapXSize; x++)
                 {
-                    if (x == 0 || y == 0 || x == _xSize - 1 || y == _ySize - 1)
+                    if (x == 0 || y == 0 || x == MapXSize - 1 || y == MapYSize - 1)
                     {
                         _gameObjectsMap[y, x] = new ConcreteWall();
                     }
@@ -69,8 +68,8 @@ namespace Bomberman
                 }
             }
 
-            PlayerXCoordiante = _rand.Next(1, Constant.WindowXSize - 1);
-            PlayerYCoordiante = _rand.Next(1, Constant.WindowYSize - 1);
+            PlayerXCoordiante = _rand.Next(1, MapXSize - 1);
+            PlayerYCoordiante = _rand.Next(1, MapYSize - 1);
 
             _gameObjectsMap[PlayerYCoordiante, PlayerXCoordiante] = new Player();
         }

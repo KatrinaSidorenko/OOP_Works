@@ -10,37 +10,43 @@ namespace Bomberman
 {
     public class PlayerMenu : Menu
     {
-        private static List<GameMenuOption> _options;
-        private static int _index;
+        private List<GameMenuOption> _options;
+        private int _index;
 
-        public void PlayerMenuStart()
+        public PlayerMenu()
         {
-            Console.Clear();
-            Console.Title = "BomberMan Menu";
-            Console.CursorVisible = false;
-
             _options = new List<GameMenuOption>
             {
                 new GameMenuOption("♣", () => FileManager.WriteCharacterIntoFile("♣")),
                 new GameMenuOption("I", () => FileManager.WriteCharacterIntoFile("I")),
                 new GameMenuOption("▲", () => FileManager.WriteCharacterIntoFile("▲")),
                 new GameMenuOption("▼", () => FileManager.WriteCharacterIntoFile("▼")),
-                new GameMenuOption("$", () => FileManager.WriteCharacterIntoFile("$")),
-                new GameMenuOption("back".ToUpper(), () => new MainMenu().MenuStart())
+                new GameMenuOption("$", () => FileManager.WriteCharacterIntoFile("$"))
             };
+        }
+        public void ProcessPlayerMenu()
+        {
+            Console.Clear();
+            Console.Title = "BomberMan Menu";
+            Console.CursorVisible = false;
 
             GetPlayerName();
-            DrawMenu(_options, _options[_index]);
-            base.HandleOptions(_options, _index);
+
+            bool loop = true;
+            while(loop)
+            {
+                DrawMenu(_options, _options[_index]);
+                loop = base.HandleOptions(_options, _index);
+            }
         }
 
         public override void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
         {
-            Console.SetCursorPosition(45, 10);
+            Console.SetCursorPosition(50, 10);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Choose player character:".ToUpper());
             Console.ResetColor();
-            Console.SetCursorPosition(30, 12);
+            Console.SetCursorPosition(47, 12);
             base.DrawMenu(options, selectedOption);           
         }
 

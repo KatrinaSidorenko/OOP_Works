@@ -19,14 +19,16 @@ namespace Bomberman
         }
         public void DrawScene()
         {
-            for (var i = 0; i < Constant.WindowYSize; i++)
+            for (var i = 0; i < Map.MapYSize; i++)
             {
-                for (var j = 0; j < Constant.WindowXSize; j++)
+                for (var j = 0; j < Map.MapXSize; j++)
                 {
                     _currentMap[i, j].Draw(i, j);
                 }
+
                 Console.WriteLine();
             }
+
             PrintCurrentPlayerData();
         }
 

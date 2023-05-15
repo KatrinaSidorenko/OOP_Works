@@ -8,7 +8,7 @@ namespace Bomberman.GameObjects
 {
     public class EmptySpace : GameObject
     {
-        public override char Character { get; set; } = Constant.EmptySpaceChar;
+        public override char Character { get; set; } = EmptySpaceChar;
 
         public override bool CanMoveThrough => true;
 
@@ -16,7 +16,7 @@ namespace Bomberman.GameObjects
 
         public override void Draw(int y, int x)
         {
-            Console.SetCursorPosition(x + 10, y + 5);
+            base.Draw(y, x);
             Console.Write(Character);
         }
     }

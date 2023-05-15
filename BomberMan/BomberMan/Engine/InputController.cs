@@ -9,27 +9,24 @@ namespace Bomberman
 {
     public class InputController
     {
+        private Dictionary<ConsoleKey, PlayerAction> _inputConverter;
+        public InputController() 
+        {
+            _inputConverter = new Dictionary<ConsoleKey, PlayerAction>()
+            {
+                {ConsoleKey.Escape,  PlayerAction.End},
+                {ConsoleKey.Spacebar, PlayerAction.Bomb},
+                {ConsoleKey.LeftArrow, PlayerAction.Left},
+                {ConsoleKey.RightArrow, PlayerAction.Right},
+                {ConsoleKey.UpArrow, PlayerAction.Up},
+                {ConsoleKey.DownArrow, PlayerAction.Down},
+            };
+        }
         public PlayerAction GetInput()
         {
             ConsoleKeyInfo ki = Console.ReadKey(true);
 
-            switch (ki.Key)
-            {
-                case ConsoleKey.Escape:
-                    return PlayerAction.End;                 
-                case ConsoleKey.Spacebar:
-                    return PlayerAction.Bomb;
-                case ConsoleKey.LeftArrow:
-                    return PlayerAction.Left;
-                case ConsoleKey.RightArrow:
-                    return PlayerAction.Right;
-                case ConsoleKey.UpArrow:
-                    return PlayerAction.Up;
-                case ConsoleKey.DownArrow:
-                    return PlayerAction.Down;
-            }
-
-            return PlayerAction.None;
+            return _inputConverter[ki.Key];            
         }
     }
 }

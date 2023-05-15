@@ -10,7 +10,7 @@ namespace Bomberman.GameObjects
 {
     public class Player : GameObject
     {
-        public override char Character { get; set; } 
+        public override char Character { get; set; };
         public override bool CanMoveThrough => true;
 
         public override bool CanBeDestroyed => false;
@@ -20,12 +20,12 @@ namespace Bomberman.GameObjects
         }
         public override void Action(GameLogic game)
         {
-            game.Condition = GameCondition.Dead;
+            game.GameState = GameState.Dead;
         }
 
         public override void Draw(int y, int x)
         {
-            Console.SetCursorPosition(x + 10, y + 5);
+            base.Draw(y, x);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(Character);
             Console.ResetColor();

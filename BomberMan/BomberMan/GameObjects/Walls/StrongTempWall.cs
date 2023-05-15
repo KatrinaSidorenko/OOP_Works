@@ -8,7 +8,7 @@ namespace Bomberman.GameObjects
 {
     public class StrongTempWall : TempWall
     {
-        public override int Strengh { get; set; } = 2;
+        public override int Strength { get; set; } = 2;
         public StrongTempWall(ref int amount) : base(ref amount)
         {
         }

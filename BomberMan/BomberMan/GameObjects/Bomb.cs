@@ -9,7 +9,7 @@ namespace Bomberman.GameObjects
 {
     public class Bomb : GameObject
     {
-        public override char Character { get; set; } = Constant.BombChar;
+        public override char Character { get; set; } = BombChar;
 
         public override bool CanMoveThrough => false;
 
@@ -17,7 +17,7 @@ namespace Bomberman.GameObjects
 
         public override void Draw(int y, int x)
         {
-            Console.SetCursorPosition(x + 10, y + 5);
+            base.Draw(y, x);
             Console.Write(Character);
         }
 

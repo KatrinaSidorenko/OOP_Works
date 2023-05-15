@@ -18,16 +18,16 @@ namespace Bomberman
             _startTime = DateTime.Now;
         }
 
-        public void GemaOverTimeCheck()
+        public void CheckGameOverTime()
         {
             if (DateTime.Now.Subtract(_startTime) > _duration && _logic.Walls == 0
                 || DateTime.Now.Subtract(_startTime) < _duration && _logic.Walls == 0)
             {
-                _logic.Condition = GameCondition.Victory;
+                _logic.GameState = GameState.Victory;
             }
             else if (DateTime.Now.Subtract(_startTime) > _duration)
             {
-                _logic.Condition = GameCondition.TimeLeftEnd;
+                _logic.GameState = GameState.TimeLeftEnd;
             }
         }
 
@@ -36,4 +36,4 @@ namespace Bomberman
             return _duration - (DateTime.Now.Subtract(_startTime));
         }
     }
-    }
+ }

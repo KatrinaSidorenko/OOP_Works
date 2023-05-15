@@ -1,4 +1,5 @@
-﻿using Bomberman.GameObjects;
+﻿using Bomberman.Enums;
+using Bomberman.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,38 +17,27 @@ namespace Bomberman
             _map = map;
         }
 
-        private void Swap((int pY, int pX)player, (int y, int x)empty)
+        private void Swap((int pY, int pX)player, (int y, int x)newPlayerCoordinates)
         {
-            var temp = _map[empty.y, empty.x];
+            var temp = _map[newPlayerCoordinates.y, newPlayerCoordinates.x];
 
             if(temp is Coin)
             {
                 temp = new EmptySpace();
             }
 
-            _map[empty.y, empty.x] = _map[player.pY, player.pX];
+            _map[newPlayerCoordinates.y, newPlayerCoordinates.x] = _map[player.pY, player.pX];
             _map[player.pY, player.pX] = temp;
         }
 
-        public void PlayerUpMove(int newY, int newX)
+        public void PlayerPhisicMove(int y, int x, Direction direction)
         {
-            Swap(player: (newY, newX), empty: (newY - 1, newX));
-        }
+            int newY = y + Converter.DirectionToCoordinates[direction].dy;
+            int newX = x + Converter.DirectionToCoordinates[direction].dx;
 
-        public void PlayerDownMove(int newY, int newX)
-        {
-            Swap(player: (newY, newX), empty: (newY + 1, newX));
+            Swap(player: (y, x), newPlayerCoordinates:(newY, newX));
         }
-
-        public void PlayerRightMove(int newY, int newX)
-        {
-            Swap(player: (newY, newX), empty: (newY, newX + 1));
-        }
-
-        public void PlayerLeftMove(int newY, int newX)
-        {
-            Swap(player: (newY, newX), empty: (newY, newX - 1));
-        }
+        
         public void CreateBomb(int y, int x)
         {
             _map[y, x] = new Bomb();            

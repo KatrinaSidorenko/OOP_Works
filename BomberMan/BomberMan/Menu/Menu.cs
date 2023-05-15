@@ -23,7 +23,7 @@ namespace Bomberman
             }
         }
 
-        public virtual void HandleOptions(List<GameMenuOption> options, int index)
+        public virtual bool HandleOptions(List<GameMenuOption> options, int index)
         {
             ConsoleKeyInfo ki;
             do
@@ -31,6 +31,7 @@ namespace Bomberman
                 ki = Console.ReadKey(true);
                 if (ki.Key == ConsoleKey.RightArrow && index + 1 < options.Count)
                     index++;
+                    
 
                 if (ki.Key == ConsoleKey.LeftArrow && index - 1 >= 0)
                     index--;
@@ -40,19 +41,22 @@ namespace Bomberman
                 if (ki.Key == ConsoleKey.Enter)
                 {
                     options[index].SelectedOption.Invoke();
-                    break;
+
+                    return false;
                 }
             } while (ki.Key != ConsoleKey.Escape);
+
+            return true;
         }
-        public virtual void BackButton()
+        public virtual bool WaitForEnterButton()
         {
-            Console.WriteLine("~~ Return to the main menu ~~");
+            Console.Clear();
+            Console.SetCursorPosition(40, 21);
+            
+            Console.WriteLine("~~ Press 'Enter' for returning back ~~");
             ConsoleKeyInfo ki = Console.ReadKey(true);
 
-            while (ki.Key != ConsoleKey.Enter)
-            {
-                ki = Console.ReadKey(true);
-            }
+            return ki.Key != ConsoleKey.Enter;
         }
 
     }
