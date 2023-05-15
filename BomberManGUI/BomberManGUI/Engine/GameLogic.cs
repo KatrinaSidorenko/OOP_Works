@@ -1,6 +1,7 @@
 ﻿using Bomberman.GameObjects;
 using BomberManGUI;
 using BomberManGUI.Engine;
+using BomberManGUI.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace Bomberman
     public class GameLogic
     {
         public readonly Map MainMap;
-        public int PlayerXCoordinate;
-        public int PlayerYCoordinate;
-        public GameCondition Condition = GameCondition.InProgress;
+        private int _playerXCoordinate;
+        private int _playerYCoordinate;
+        public GameState GameState = GameState.InProgress;
         public int Score;
         public int Walls;
         public Timer Timer;
@@ -25,108 +26,80 @@ namespace Bomberman
         private Thread _bombThread;
         private GameMovements _movementsUI;
         private GamePhisics _gamePhisics;
+        private Dictionary<PlayerAction, Func<bool>> _actionCollection;
 
-        public GameLogic(MainBoard board, PictureBox[,] box, Map map) 
+        public GameLogic(MainBoard board, PictureBox[,] box, Map map)
         {
             MainMap = map;
             Walls = MainMap.TotalAmountOfTempWalls;
             Timer = new Timer(this);
             _gamePhisics = new GamePhisics(MainMap);
             _movementsUI = new GameMovements(box, board.Player);
-            PlayerXCoordinate = MainMap.PlayerXCoordiante;
-            PlayerYCoordinate = MainMap.PlayerYCoordiante;
+            _playerXCoordinate = MainMap.PlayerXCoordiante;
+            _playerYCoordinate = MainMap.PlayerYCoordiante;
+            //_actionCollection = new Dictionary<PlayerAction, Func<bool>>()
+            //{
+            //    {PlayerAction.Bomb, BombCreationRequest },
+            //    {PlayerAction.End, CloseWindowRequest }
+            //};
         }
-        public void ProcessGameLogic(PlayerAction input)
+        public bool ProcessGameLogic(PlayerAction input)
         {
-            Timer.GemaOverTimeCheck();
-
-            Dictionary<PlayerAction, Action> actionCollection = new Dictionary<PlayerAction, Action>()
-            {
-                { PlayerAction.Up, MoveUpRequire },
-                { PlayerAction.Down, MoveDownRequire },
-                { PlayerAction.Left, MoveLeftRequire },
-                { PlayerAction.Right, MoveRightRequire },
-                { PlayerAction.Bomb, BombCreationRequire },
-                { PlayerAction.End, CloseWindowRequire }
-            };
+            Timer.CheckGameOverTime();
+            //_gameOver.CheckGameOver(GameState);
 
             if (input != PlayerAction.None)
             {
-                actionCollection[input].Invoke();
+                //if (_actionCollection.ContainsKey(input))
+                //{
+                //    return _actionCollection[input]();
+                //}
+                if (PlayerAction.Bomb == input)
+                {
+                    BombCreationRequest();
+                }
+                else
+                {
+                    PlayerMoveRequest(Converter.ActionToDirection[input]);
+                }
             }
-                    
-        }
-        private void CloseWindowRequire()
-        {
-            Environment.Exit(0);
+
+            return GameState == GameState.InProgress;
         }
 
-        private bool BaseMovingRequire(int newX, int newY) //gets temp values of coordinates
+        private void PlayerMoveRequest(Direction direction)
         {
+            int newY = _playerYCoordinate + Converter.DirectionToCoordinates[direction].dy;
+            int newX = _playerXCoordinate + Converter.DirectionToCoordinates[direction].dx;
+
             if (MainMap[newX, newY].CanMoveThrough)
             {
                 MainMap[newX, newY].Action(this, _movementsUI, newX, newY);
-
-                return true;
+                _movementsUI.PlayerMove(direction);
+                _gamePhisics.PlayerPhisicMove(_playerYCoordinate, _playerXCoordinate, direction);
+                _playerYCoordinate = newY;
+                _playerXCoordinate = newX;
             }
-
+        }
+        private bool CloseWindowRequest()
+        {
             return false;
         }
-        private void MoveLeftRequire()
+
+
+        private void BombCreationRequest()
         {
-            if (BaseMovingRequire(PlayerXCoordinate - 1, PlayerYCoordinate))
+            _bombThread = new Thread(new ThreadStart(CreateBlustWaveRequest));
+
+            int tempX = _playerXCoordinate;
+            int tempY = _playerYCoordinate;
+            var movingsList = Enum.GetValues(typeof(Direction));
+            //List<Action> movingsList = new List<Action>() { MoveUpRequire, MoveDownRequire, MoveLeftRequire, MoveRightRequire };
+            foreach (Direction moving in movingsList)
             {
-                _movementsUI.PlayerMove(PlayerAction.Left);
-                _gamePhisics.PlayerLeftMove(PlayerXCoordinate, PlayerYCoordinate);
-                PlayerXCoordinate -= 1;
-            }
-        }
-
-        private void MoveRightRequire()
-        {
-            if (BaseMovingRequire(PlayerXCoordinate + 1, PlayerYCoordinate))
-            {
-                _movementsUI.PlayerMove(PlayerAction.Right);
-                _gamePhisics.PlayerRightMove(PlayerXCoordinate, PlayerYCoordinate);
-                PlayerXCoordinate += 1;
-            }
-        }
-
-        private void MoveUpRequire()
-        {
-            if(BaseMovingRequire(PlayerXCoordinate, PlayerYCoordinate - 1))
-            {
-                _movementsUI.PlayerMove(PlayerAction.Up);
-                _gamePhisics.PlayerUpMove(PlayerXCoordinate, PlayerYCoordinate);
-                PlayerYCoordinate -= 1;
-            }
-        }
-
-        private void MoveDownRequire()
-        {
-            if (BaseMovingRequire(PlayerXCoordinate, PlayerYCoordinate + 1))
-            {
-
-                _gamePhisics.PlayerDownMove(PlayerXCoordinate, PlayerYCoordinate);
-                _movementsUI.PlayerMove(PlayerAction.Down);
-                PlayerYCoordinate += 1;
-                
-            }
-        }
-
-        private void BombCreationRequire()
-        {
-            _bombThread = new Thread(new ThreadStart(CreateBlustWaveRequire));
-
-            int tempX = PlayerXCoordinate;
-            int tempY = PlayerYCoordinate;
-
-            List<Action> movingsList = new List<Action>() { MoveUpRequire, MoveDownRequire, MoveLeftRequire, MoveRightRequire };
-            foreach (Action moving in movingsList)
-            {
-                if (PlayerXCoordinate == tempX && PlayerYCoordinate == tempY)
+                if (_playerXCoordinate == tempX && _playerYCoordinate == tempY)
                 {
-                    moving.Invoke();
+                    PlayerMoveRequest(moving);
                 }
                 else
                 {
@@ -139,10 +112,12 @@ namespace Bomberman
 
             _bombCoordinates.Enqueue((tempX, tempY));
 
-            _bombThread.Start();           
+            _bombThread.Start();
+
+            //return true;
         }
 
-        private void CreateBlustWaveRequire()
+        private void CreateBlustWaveRequest()
         {
             Thread.Sleep(2000);
             MusicManager.BombSoundPlay();
@@ -151,7 +126,7 @@ namespace Bomberman
             {
                 var coordinates = CheckBombSurrounding(_bombCoordinates.Peek().Item1, _bombCoordinates.Peek().Item2);
                 coordinates.Add(_bombCoordinates.Dequeue());
-                
+
                 _gamePhisics.CreateBlustWave(coordinates);
                 _movementsUI.BlustWaveCreation(coordinates);
 
@@ -164,7 +139,7 @@ namespace Bomberman
 
         private List<(int, int)> CheckBombSurrounding(int x, int y)
         {
-            List<(int, int)> coordinatesForDestroy = new List<(int, int)> ();
+            List<(int, int)> coordinatesForDestroy = new List<(int, int)>();
             List<(int, int)> nodes = new List<(int, int)>() { (x - 1, y), (x + 1, y), (x, y + 1), (x, y - 1) };
 
             foreach (var coordianate in nodes)
@@ -172,11 +147,11 @@ namespace Bomberman
                 var element = MainMap[coordianate.Item1, coordianate.Item2];
                 element.Action(this, _movementsUI, coordianate.Item1, coordianate.Item2);
 
-                if(element.CanBeDestroyed)
+                if (element.CanBeDestroyed)
                 {
-                    if(element is TempWall temWall)
+                    if (element is TempWall temWall)
                     {
-                        if(temWall.Strengh == 0)
+                        if (temWall.Strengh == 0)
                         {
                             coordinatesForDestroy.Add(coordianate);
                         }
@@ -185,7 +160,7 @@ namespace Bomberman
                     {
                         coordinatesForDestroy.Add(coordianate);
                     }
-                    
+
                 }
             }
 

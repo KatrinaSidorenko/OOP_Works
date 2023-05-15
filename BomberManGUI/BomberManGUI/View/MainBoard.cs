@@ -33,15 +33,6 @@ namespace BomberManGUI
 
             GamePanel.Controls.Clear();
 
-            //if (GamePanel.Width / _sizeX < GamePanel.Height / _sizeY)
-            //{
-            //    BoxSize = GamePanel.Width / _sizeX;
-            //}
-            //else
-            //{
-            //    BoxSize = GamePanel.Height / _sizeY;
-            //}
-
             for (var x = 0; x < _sizeX; x++)
             {
                 for(var y = 0; y < _sizeY; y++)

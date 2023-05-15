@@ -1,4 +1,5 @@
 ﻿using Bomberman.GameObjects;
+using BomberManGUI.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,41 +17,29 @@ namespace Bomberman
             _map = map;
         }
 
-        private void Swap((int pX, int pY) player, (int x, int y) empty)
+        private void Swap((int pX, int pY) player, (int x, int y) newPlayerCoordinates)
         {
-            var temp = _map[empty.x, empty.y];
+            var temp = _map[newPlayerCoordinates.x, newPlayerCoordinates.y];
 
-            if (temp is Coin )
+            if (temp is Coin)
             {
                 temp = new EmptySpace();
             }
 
-            _map[empty.x, empty.y] = _map[player.pX, player.pY];
+            _map[newPlayerCoordinates.x, newPlayerCoordinates.y] = _map[player.pX, player.pY];
             _map[player.pX, player.pY] = temp;
         }
 
-        public void PlayerUpMove(int newX, int newY)
+        public void PlayerPhisicMove(int y, int x, Direction direction)
         {
-            Swap(player: (newX, newY), empty: (newX, newY - 1));
-        }
+            int newY = y + Converter.DirectionToCoordinates[direction].dy;
+            int newX = x + Converter.DirectionToCoordinates[direction].dx;
 
-        public void PlayerDownMove(int newX, int newY)
-        {
-            Swap(player: (newX, newY), empty: (newX, newY + 1));
-        }
-
-        public void PlayerRightMove(int newX, int newY)
-        {
-            Swap(player: (newX, newY), empty: (newX + 1, newY));
-        }
-
-        public void PlayerLeftMove(int newX, int newY)
-        {
-            Swap(player: (newX, newY), empty: (newX - 1, newY));
+            Swap(player: (x, y), newPlayerCoordinates: (newX, newY));
         }
         public void CreateBomb(int x, int y)
         {
-            _map[x, y] = new Bomb();            
+            _map[x, y] = new Bomb();
         }
 
         private void CreateObjectsHelper(List<(int, int)> coordinates, Type objType)
@@ -63,7 +52,7 @@ namespace Bomberman
 
         public void CreateBlustWave(List<(int, int)> coordinates)
         {
-            CreateObjectsHelper(coordinates, new BlustWave().GetType()); 
+            CreateObjectsHelper(coordinates, new BlustWave().GetType());
         }
 
         public void ClearBombSurrounding(List<(int, int)> coordinates)

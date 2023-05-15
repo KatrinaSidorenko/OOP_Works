@@ -2,6 +2,7 @@
 using Bomberman;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -11,7 +12,7 @@ namespace BomberManGUI
 {
     public static class MusicManager
     {
-        private static string _bombSoundPath = "C:\\Users\\Lenovo\\Desktop\\BomberManGUI\\BomberManGUI\\bomb_sound.wav";
+        private static string _bombSoundPath = _bombSoundPath ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bomb_sound.wav");
 
         public  static void BombSoundPlay()
         {

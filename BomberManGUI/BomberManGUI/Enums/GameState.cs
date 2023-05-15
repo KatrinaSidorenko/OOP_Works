@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bomberman
 {
-    public enum GameCondition
+    public enum GameState
     {
         InProgress,
         TimeLeftEnd,

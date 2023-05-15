@@ -55,8 +55,11 @@
     <Compile Include="Engine\InputController.cs" />
     <Compile Include="Engine\Timer.cs" />
     <Compile Include="Enums\Constant.cs" />
-    <Compile Include="Enums\GameCondition.cs" />
+    <Compile Include="Enums\Converter.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\GameState.cs" />
     <Compile Include="Enums\PlayerAction.cs" />
+    <Compile Include="FileManager\FileManager.cs" />
     <Compile Include="Forms\GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,14 +73,15 @@
     </Compile>
     <Compile Include="GameObjects\BlustWave.cs" />
     <Compile Include="GameObjects\Bomb.cs" />
-    <Compile Include="GameObjects\Coin.cs" />
-    <Compile Include="GameObjects\ConcreteWall.cs" />
+    <Compile Include="GameObjects\Coins\Coin.cs" />
+    <Compile Include="GameObjects\Walls\BaseWall.cs" />
+    <Compile Include="GameObjects\Walls\ConcreteWall.cs" />
     <Compile Include="GameObjects\EmptySpace.cs" />
-    <Compile Include="GameObjects\ExpensiveCoin.cs" />
+    <Compile Include="GameObjects\Coins\ExpensiveCoin.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Player.cs" />
-    <Compile Include="GameObjects\StrongTempWall.cs" />
-    <Compile Include="GameObjects\TempWall.cs" />
+    <Compile Include="GameObjects\Walls\StrongTempWall.cs" />
+    <Compile Include="GameObjects\Walls\TempWall.cs" />
     <Compile Include="MusicManager.cs" />
     <Compile Include="View\MainBoard.cs" />
     <Compile Include="Forms\MenuForm.cs">

@@ -1,4 +1,5 @@
 ﻿using BomberManGUI.Engine;
+using BomberManGUI.GameObjects.Walls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,16 +10,13 @@ using System.Windows.Forms;
 
 namespace Bomberman.GameObjects
 {
-    public class TempWall : GameObject
+    public class TempWall : BaseWall
     {
         public virtual int Strengh { get; set; } = 1;
         public TempWall(ref int amount)
         {
             amount++;
         }
-
-        public override bool CanMoveThrough => false;
-
         public override bool CanBeDestroyed => true;
 
         public override void Action(GameLogic game, GameMovements movements, int x, int y)

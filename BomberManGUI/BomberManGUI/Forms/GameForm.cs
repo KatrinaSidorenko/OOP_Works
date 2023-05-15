@@ -1,4 +1,5 @@
 ﻿using Bomberman;
+using BomberManGUI.FileManager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,8 +58,8 @@ namespace BomberManGUI
         }
 
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
-        {           
-            _logic.ProcessGameLogic(_inputController.GetInput(e.KeyCode));
+        {
+            _logic.ProcessGameLogic(_inputController.GetInput(e.KeyCode))
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -84,15 +85,15 @@ namespace BomberManGUI
 
         private void processGameTimer_Tick(object sender, EventArgs e)
         {
-            if(_logic.Condition == GameCondition.Dead || _logic.Condition == GameCondition.TimeLeftEnd)
+            var name = FileManager.FileManager.GetPlayerName();
+            if (_logic.GameState == GameState.Dead || _logic.GameState == GameState.TimeLeftEnd)
             {
                 processGameTimer.Enabled = false;
-                DialogResult result = MessageBox.Show($"{_userName.ToUpper()} YOU DEAD. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(result == DialogResult.Yes)
+                DialogResult result = MessageBox.Show($"{name.ToUpper()} YOU DEAD. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
                     this.Close();
                     var form = new GameForm();
-                    form.SetUserName(_userName);
                     form.Show();
                 }
                 else
@@ -100,15 +101,14 @@ namespace BomberManGUI
                     Application.Exit();
                 }
             }
-            if(_logic.Condition == GameCondition.Victory)
+            if (_logic.GameState == GameState.Victory)
             {
                 processGameTimer.Enabled = false;
-                DialogResult result = MessageBox.Show($"{_userName.ToUpper()} YOU WIN. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"{name.ToUpper()} YOU WIN. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     this.Close();
                     var form = new GameForm();
-                    form.SetUserName(_userName);
                     form.Show();
                 }
                 else

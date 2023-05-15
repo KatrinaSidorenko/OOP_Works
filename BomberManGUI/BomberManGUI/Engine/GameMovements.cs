@@ -1,4 +1,5 @@
 ﻿using Bomberman;
+using BomberManGUI.Enums;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,20 +21,20 @@ namespace BomberManGUI.Engine
             _player = player;
         }
 
-        public void PlayerMove(PlayerAction direction)
+        public void PlayerMove(Direction direction)
         {
             switch (direction)
             {
-                case PlayerAction.Left:
+                case Direction.Left:
                     _player.Location = new Point(_player.Location.X - MainBoard.BoxSize + 1, _player.Location.Y);
                     break;
-                case PlayerAction.Right:
+                case Direction.Right:
                     _player.Location = new Point(_player.Location.X + MainBoard.BoxSize - 1, _player.Location.Y);
                     break;
-                case PlayerAction.Up:
+                case Direction.Up:
                     _player.Location = new Point(_player.Location.X, _player.Location.Y - MainBoard.BoxSize + 1);
                     break;
-                case PlayerAction.Down:
+                case Direction.Down:
                     _player.Location = new Point(_player.Location.X, _player.Location.Y + MainBoard.BoxSize - 1);
                     break;
                 default:

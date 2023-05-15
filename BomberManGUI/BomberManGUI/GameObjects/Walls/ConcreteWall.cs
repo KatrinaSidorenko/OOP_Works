@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BomberManGUI.GameObjects.Walls;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,10 +9,8 @@ using System.Windows.Forms;
 
 namespace Bomberman.GameObjects
 {
-    public class ConcreteWall : GameObject
-    {
-
-        public override bool CanMoveThrough => false;
+    public class ConcreteWall : BaseWall
+    {        
 
         public override bool CanBeDestroyed => false;
 

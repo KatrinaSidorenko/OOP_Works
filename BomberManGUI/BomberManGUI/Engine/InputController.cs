@@ -10,25 +10,23 @@ namespace Bomberman
 {
     public class InputController
     {
+        private Dictionary<Keys, PlayerAction> _inputConverter;
+        public InputController()
+        {
+            _inputConverter = new Dictionary<Keys, PlayerAction>()
+            {
+                {Keys.Escape,  PlayerAction.End},
+                {Keys.Space, PlayerAction.Bomb},
+                {Keys.Left, PlayerAction.Left},
+                {Keys.Right, PlayerAction.Right},
+                {Keys.Up, PlayerAction.Up},
+                {Keys.Down, PlayerAction.Down},
+            };
+        }
         public PlayerAction GetInput(Keys ki)
         {
-            switch (ki)
-            {
-                case Keys.Escape:
-                    return PlayerAction.End;
-                case Keys.Space:
-                    return PlayerAction.Bomb;
-                case Keys.Left:
-                    return PlayerAction.Left;
-                case Keys.Right:
-                    return PlayerAction.Right;
-                case Keys.Up:
-                    return PlayerAction.Up;
-                case Keys.Down:
-                    return PlayerAction.Down;
-            }
 
-            return PlayerAction.None;
+            return _inputConverter[ki];
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Bomberman.GameObjects
         public override bool CanBeDestroyed => false;       
         public override void Action(GameLogic game, GameMovements movements, int x, int y)
         {
-            game.Condition = GameCondition.Dead;
+            game.GameState = GameState.Dead;
         }
 
         public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
