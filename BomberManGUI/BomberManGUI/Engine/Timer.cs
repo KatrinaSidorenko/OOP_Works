@@ -1,11 +1,8 @@
-﻿using Bomberman.GameObjects;
+﻿using BomberManGUI.GameObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BomberManGUI.Enums;
 
-namespace Bomberman
+namespace BomberManGUI.Engine
 {
     public class Timer
     {

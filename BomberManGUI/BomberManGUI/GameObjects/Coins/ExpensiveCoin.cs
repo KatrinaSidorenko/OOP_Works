@@ -1,25 +1,19 @@
 ﻿using BomberManGUI.Engine;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BomberManGUI.Enums;
 using System.Windows.Forms;
 
-namespace Bomberman.GameObjects
+namespace BomberManGUI.GameObjects
 {
     public class ExpensiveCoin : Coin
     {
-        public override void Action(GameLogic game, GameMovements movements, int x, int y)
+        public override void Action(GameLogic game)
         {
             game.Score += 2;
-            movements.CoinCollection(x, y);
         }
 
         public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
         {           
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = BomberManGUI.Properties.Resources.diamand;
+            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(ExpensiveCoin)]; ;
         }
 
     }

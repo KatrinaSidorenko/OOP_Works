@@ -1,13 +1,7 @@
-﻿using BomberManGUI.GameObjects.Walls;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BomberManGUI.Enums;
 using System.Windows.Forms;
 
-namespace Bomberman.GameObjects
+namespace BomberManGUI.GameObjects.Walls
 {
     public class ConcreteWall : BaseWall
     {        
@@ -16,7 +10,7 @@ namespace Bomberman.GameObjects
 
         public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
         {          
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = BomberManGUI.Properties.Resources.concreteWall;
+            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(ConcreteWall)];
         }
     }
 }

@@ -1,13 +1,15 @@
 ﻿using System;
+using BomberManGUI.GameObjects;
+using BomberManGUI.Enums;
+using BomberManGUI.GameObjects.Walls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Bomberman.GameObjects;
 
-namespace Bomberman
+namespace BomberManGUI.View
 {
     public class Map
     {

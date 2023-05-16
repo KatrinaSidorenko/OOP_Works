@@ -1,16 +1,9 @@
-﻿using Bomberman;
-using BomberManGUI.FileManager;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using System.Media;
+using BomberManGUI.View;
+using BomberManGUI.Engine;
+using BomberManGUI.Enums;
+using System.Xml.Linq;
 
 namespace BomberManGUI
 {
@@ -18,20 +11,21 @@ namespace BomberManGUI
     {
         private InputController _inputController;
         private GameLogic _logic;
-        private MainBoard _board;
-        private string _userName;
+        private SceneDrawer _board;
         public GameForm()
-        {
-            InitializeComponent();
+        {            
+            InitializeComponent();            
             Init();
             BackgroundSoundPlayer();
+
+            gamePanel.Visible = true;
         }
 
         private void Init()
         {
-            _board = new MainBoard(gamePanel);
+            _board = new SceneDrawer(gamePanel);
             _inputController = new InputController();
-            _logic = new GameLogic(_board, _board.ImgMap, _board.PhisicMap);
+            _logic = new GameLogic(_board, _board.PhisicMap);
         }
 
         private void aboutGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,7 +53,17 @@ namespace BomberManGUI
 
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
         {
-            _logic.ProcessGameLogic(_inputController.GetInput(e.KeyCode))
+            if (!_logic.ProcessGameLogic(_inputController.GetInput(e.KeyCode)))
+            {
+                if(_logic.GameState == GameState.Dead || _logic.GameState == GameState.TimeLeftEnd)
+                {
+                    ShowGameOverBox("dead");
+                }
+                else
+                {
+                    ShowGameOverBox("win");
+                }
+            }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -85,54 +89,38 @@ namespace BomberManGUI
 
         private void processGameTimer_Tick(object sender, EventArgs e)
         {
-            var name = FileManager.FileManager.GetPlayerName();
-            if (_logic.GameState == GameState.Dead || _logic.GameState == GameState.TimeLeftEnd)
-            {
-                processGameTimer.Enabled = false;
-                DialogResult result = MessageBox.Show($"{name.ToUpper()} YOU DEAD. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    this.Close();
-                    var form = new GameForm();
-                    form.Show();
-                }
-                else
-                {
-                    Application.Exit();
-                }
-            }
-            if (_logic.GameState == GameState.Victory)
-            {
-                processGameTimer.Enabled = false;
-                DialogResult result = MessageBox.Show($"{name.ToUpper()} YOU WIN. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    this.Close();
-                    var form = new GameForm();
-                    form.Show();
-                }
-                else
-                {
-                    Application.Exit();
-                }
-            }
+            
         }
-
-        
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-
-        public void SetUserName(string userName)
-        {
-            _userName = userName;
+            DialogResult result = MessageBox.Show( "Do you want leave the game?", "Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }           
         }
 
         private void BackgroundSoundPlayer()
         {
             MusicManager.BackgrounSound(MXP);
+        }
+
+        private void ShowGameOverBox(string gameOver)
+        {
+            var name = FileManager.FileManager.GetPlayerName();
+           
+            DialogResult result = MessageBox.Show($"{name.ToUpper()} YOU {gameOver.ToUpper()}. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+               this.Close();
+               var form = new GameForm();
+                form.Show();
+            }
+            else
+            {
+               Application.Exit();
+            }
         }
     }
 }

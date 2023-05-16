@@ -5,9 +5,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BomberManGUI.View;
 using System.Windows.Forms;
 
-namespace Bomberman.GameObjects
+namespace BomberManGUI.GameObjects.Walls
 {
     public class StrongTempWall : TempWall
     {
@@ -15,9 +16,9 @@ namespace Bomberman.GameObjects
         public StrongTempWall(ref int amount) : base(ref amount)
         {
         }
-        public override void Action(GameLogic game, GameMovements movements, int x, int y)
+        public override void Action(GameLogic game)
         {
-            base.Action(game,movements, x, y);
+            base.Action(game);
         }       
     }
 }

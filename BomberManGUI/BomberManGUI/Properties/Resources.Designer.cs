@@ -73,9 +73,9 @@ namespace BomberManGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bomber__2_ {
+        internal static System.Drawing.Bitmap Bomber {
             get {
-                object obj = ResourceManager.GetObject("Bomber__2_", resourceCulture);
+                object obj = ResourceManager.GetObject("Bomber", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

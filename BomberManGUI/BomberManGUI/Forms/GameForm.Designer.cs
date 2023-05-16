@@ -63,13 +63,13 @@
             this.aboutGameToolStripMenuItem});
             this.recordToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
-            this.recordToolStripMenuItem.Size = new System.Drawing.Size(95, 29);
-            this.recordToolStripMenuItem.Text = "Record";
+            this.recordToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
+            this.recordToolStripMenuItem.Text = "Rules";
             // 
             // aboutGameToolStripMenuItem
             // 
             this.aboutGameToolStripMenuItem.Name = "aboutGameToolStripMenuItem";
-            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
+            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.aboutGameToolStripMenuItem.Text = "About Game";
             this.aboutGameToolStripMenuItem.Click += new System.EventHandler(this.aboutGameToolStripMenuItem_Click);
             // 
@@ -90,6 +90,7 @@
             this.gamePanel.Name = "gamePanel";
             this.gamePanel.Size = new System.Drawing.Size(1172, 538);
             this.gamePanel.TabIndex = 1;
+            this.gamePanel.Visible = false;
             this.gamePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.gamePanel_Paint);
             // 
             // dataLabel

@@ -1,13 +1,9 @@
 ﻿using BomberManGUI.Engine;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BomberManGUI.Enums;
 using System.Windows.Forms;
+using BomberManGUI.View;
 
-namespace Bomberman.GameObjects
+namespace BomberManGUI.GameObjects
 {
     public class Coin : GameObject
     {
@@ -16,15 +12,14 @@ namespace Bomberman.GameObjects
 
         public override bool CanBeDestroyed => true;
 
-        public override void Action(GameLogic game, GameMovements movements,  int x, int y)
+        public override void Action(GameLogic game)
         {
             game.Score++;
-            movements.CoinCollection(x, y);
             
         }
         public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
         {            
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = BomberManGUI.Properties.Resources.coin;
+            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(Coin)];
         }
     }
 }

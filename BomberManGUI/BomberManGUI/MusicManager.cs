@@ -1,5 +1,4 @@
 ﻿using AxWMPLib;
-using Bomberman;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +20,7 @@ namespace BomberManGUI
                 var player = new SoundPlayer(_bombSoundPath);
                 player.Play();
             }
-            catch (Exception ex)
+            catch 
             {
                 throw new Exception("Failed to play bomb sound");
             }

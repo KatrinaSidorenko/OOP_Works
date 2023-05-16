@@ -12,7 +12,6 @@ namespace BomberManGUI
 {
     public partial class MenuForm : Form
     {
-        private string _userName;
         public MenuForm()
         {
             InitializeComponent();
@@ -25,11 +24,11 @@ namespace BomberManGUI
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (_userName != null)
+            if (nameField.Text != String.Empty)
             {
                 this.Hide();
+                FileManager.FileManager.WritePlayerNameIntoFile(nameField.Text);
                 var form = new GameForm();
-                form.SetUserName(_userName);
                 form.Show();
             }
             else
@@ -40,12 +39,15 @@ namespace BomberManGUI
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Do you want leave the game?", "Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void nameField_TextChanged(object sender, EventArgs e)
         {
-            _userName = nameField.Text;
         }
     }
 }
