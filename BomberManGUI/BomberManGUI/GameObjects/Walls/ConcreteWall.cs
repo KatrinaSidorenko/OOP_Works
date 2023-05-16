@@ -1,4 +1,5 @@
 ﻿using BomberManGUI.Enums;
+using BomberManGUI.View;
 using System.Windows.Forms;
 
 namespace BomberManGUI.GameObjects.Walls
@@ -7,10 +8,9 @@ namespace BomberManGUI.GameObjects.Walls
     {        
 
         public override bool CanBeDestroyed => false;
-
-        public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
-        {          
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(ConcreteWall)];
+        public override void Draw(SceneDrawer drawer, int x, int y)
+        {
+            drawer.DrawObject(typeof(ConcreteWall), x, y);
         }
     }
 }

@@ -17,9 +17,9 @@ namespace BomberManGUI.GameObjects
 
         public override bool CanBeDestroyed => true;
 
-        public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
+        public override void Draw(SceneDrawer drawer, int x, int y)
         {
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(EmptySpace)];
+            drawer.DrawObject(typeof(EmptySpace), x, y);
         }
     }
 }

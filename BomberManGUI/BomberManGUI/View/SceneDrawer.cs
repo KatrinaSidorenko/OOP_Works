@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
-using BomberManGUI.Enums;
+﻿using BomberManGUI.Enums;
 using BomberManGUI.GameObjects;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BomberManGUI.View
 {
     public class SceneDrawer
     {
-        public Panel _gamePanel;
-        public PictureBox[,] _imgMap;
+        private Panel _gamePanel;
+        private PictureBox[,] _imgMap;
         public Map PhisicMap;
         public static int BoxSize = 38;
-        public PictureBox _player = new PictureBox();
+        private PictureBox _player = new PictureBox();
         private int _sizeX = Constant.WindowXSize;
         private int _sizeY = Constant.WindowYSize;
         public SceneDrawer(Panel panel) 
@@ -37,7 +34,7 @@ namespace BomberManGUI.View
             {
                 for(var y = 0; y < _sizeY; y++)
                 {
-                    PhisicMap[x, y].Draw(x, y, BoxSize, _gamePanel, _imgMap);
+                    PhisicMap[x, y].Draw(this, x, y);
                 }
             }
 
@@ -55,6 +52,18 @@ namespace BomberManGUI.View
             _player.Image = Converter.ObjectTypeToPicture[typeof(Player)];
         }
 
+        public void DrawObject(Type type, int x, int y)
+        {
+            PictureBox picture = new PictureBox();
+            picture.Location = new Point(x * (BoxSize - 1), y * (BoxSize - 1));
+            picture.Size = new Size(BoxSize, BoxSize);
+            picture.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            _imgMap[x, y] = picture;
+            _gamePanel.Controls.Add(picture);
+
+            picture.Image = Converter.ObjectTypeToPicture[type];
+        }
         public void DrawPlayerMove(Direction direction, int x, int y)
         {
             _imgMap[x, y].Image = Converter.ObjectTypeToPicture[typeof(EmptySpace)];

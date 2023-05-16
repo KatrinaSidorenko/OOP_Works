@@ -17,9 +17,9 @@ namespace BomberManGUI.GameObjects
             game.Score++;
             
         }
-        public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
-        {            
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(Coin)];
+        public override void Draw(SceneDrawer drawer, int x, int y)
+        {
+            drawer.DrawObject(typeof(Coin), x, y);
         }
     }
 }

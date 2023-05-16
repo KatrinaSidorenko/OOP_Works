@@ -14,10 +14,9 @@ namespace BomberManGUI.GameObjects
         {
             game.GameState = GameState.Dead;
         }
-
-        public override void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
-        {            
-            PictureBoxCreation(x, y, boxSize, gamePanel, mapPics).Image = Converter.ObjectTypeToPicture[typeof(EmptySpace)];
+        public override void Draw(SceneDrawer drawer, int x, int y)
+        {
+            drawer.DrawObject(typeof(Player), x, y);
         }
 
     }

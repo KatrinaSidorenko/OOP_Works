@@ -43,7 +43,7 @@ namespace BomberManGUI
 
         private void gamePanel_Paint(object sender, PaintEventArgs e)
         {
-
+           
         }
 
         private void menuStrip1_KeyDown(object sender, KeyEventArgs e)

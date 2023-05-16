@@ -15,22 +15,9 @@ namespace BomberManGUI.GameObjects
     {
         public abstract bool CanMoveThrough { get; }
         public abstract bool CanBeDestroyed { get; }
-        public virtual void Draw(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
-        {            
+        public virtual void Draw(SceneDrawer drawer, int x, int y)
+        {
         }
         public virtual void Action(GameLogic game) {} 
-
-        protected PictureBox PictureBoxCreation(int x, int y, int boxSize, Panel gamePanel, PictureBox[,] mapPics)
-        {
-            PictureBox picture = new PictureBox();
-            picture.Location = new Point(x * (boxSize - 1), y * (boxSize - 1));
-            picture.Size = new Size(boxSize, boxSize);
-            picture.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            mapPics[x, y] = picture;
-            gamePanel.Controls.Add(picture);
-
-            return picture;
-        }
     }
 }
