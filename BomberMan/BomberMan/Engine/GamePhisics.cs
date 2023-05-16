@@ -30,12 +30,9 @@ namespace Bomberman
             _map[player.pY, player.pX] = temp;
         }
 
-        public void PlayerPhisicMove(int y, int x, Direction direction)
+        public void PlayerPhisicMove((int y, int x)player, (int newY, int newX)newCoordinates)
         {
-            int newY = y + Converter.DirectionToCoordinates[direction].dy;
-            int newX = x + Converter.DirectionToCoordinates[direction].dx;
-
-            Swap(player: (y, x), newPlayerCoordinates:(newY, newX));
+            Swap(player: (player.y, player.x), newPlayerCoordinates:(newCoordinates.newY, newCoordinates.newX));
         }
         
         public void CreateBomb(int y, int x)

@@ -10,7 +10,7 @@ namespace Bomberman.GameObjects
 {
     public class Player : GameObject
     {
-        public override char Character { get; set; };
+        public override char Character { get; set; }
         public override bool CanMoveThrough => true;
 
         public override bool CanBeDestroyed => false;

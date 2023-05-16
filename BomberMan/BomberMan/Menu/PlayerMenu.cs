@@ -42,11 +42,11 @@ namespace Bomberman
 
         public override void DrawMenu(List<GameMenuOption> options, GameMenuOption selectedOption)
         {
-            Console.SetCursorPosition(50, 10);
+            Console.SetCursorPosition(48, 10);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Choose player character:".ToUpper());
             Console.ResetColor();
-            Console.SetCursorPosition(47, 12);
+            Console.SetCursorPosition(40, 12);
             base.DrawMenu(options, selectedOption);           
         }
 

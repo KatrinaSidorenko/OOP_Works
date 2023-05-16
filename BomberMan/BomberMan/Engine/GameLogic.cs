@@ -70,7 +70,7 @@ namespace Bomberman
             if (MainMap[newY, newX].CanMoveThrough)
             {
                 MainMap[newY, newX].Action(this);
-                _gamePhisics.PlayerPhisicMove(_playerYCoordinate, _playerXCoordinate, direction);
+                _gamePhisics.PlayerPhisicMove((_playerYCoordinate, _playerXCoordinate), (newY, newX));
                 _playerYCoordinate = newY;
                 _playerXCoordinate = newX;
             }
