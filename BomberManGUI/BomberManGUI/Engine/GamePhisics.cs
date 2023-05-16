@@ -31,12 +31,9 @@ namespace BomberManGUI.Engine
             _map[player.pX, player.pY] = temp;
         }
 
-        public void PlayerPhisicMove(int y, int x, Direction direction)
+        public void PlayerPhisicMove((int x, int y) player, (int newX, int newY) newCoordinates)
         {
-            int newY = y + Converter.DirectionToCoordinates[direction].dy;
-            int newX = x + Converter.DirectionToCoordinates[direction].dx;
-
-            Swap(player: (x, y), newPlayerCoordinates: (newX, newY));
+            Swap(player: (player.x, player.y), newPlayerCoordinates: (newCoordinates.newX, newCoordinates.newY));
         }
         public void CreateBomb(int x, int y)
         {

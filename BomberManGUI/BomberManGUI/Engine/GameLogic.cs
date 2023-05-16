@@ -68,7 +68,7 @@ namespace BomberManGUI.Engine
             {
                 currentObject.Action(this);
                 _movementsUI.DrawPlayerMove(direction, _playerXCoordinate, _playerYCoordinate);
-                _gamePhisics.PlayerPhisicMove(_playerYCoordinate, _playerXCoordinate, direction);
+                _gamePhisics.PlayerPhisicMove((_playerXCoordinate, _playerYCoordinate), (newX, newY));
 
                 _playerYCoordinate = newY;
                 _playerXCoordinate = newX;
