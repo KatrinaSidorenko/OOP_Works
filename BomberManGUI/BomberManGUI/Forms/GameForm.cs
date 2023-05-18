@@ -17,8 +17,6 @@ namespace BomberManGUI
             InitializeComponent();            
             Init();
             BackgroundSoundPlayer();
-
-            gamePanel.Visible = true;
         }
 
         private void Init()
@@ -58,6 +56,10 @@ namespace BomberManGUI
                 if(_logic.GameState == GameState.Dead || _logic.GameState == GameState.TimeLeftEnd)
                 {
                     ShowGameOverBox("dead");
+                }
+                else if(_logic.GameState == GameState.Exit)
+                {
+                    exitToolStripMenuItem_Click(null, null);
                 }
                 else
                 {
@@ -110,7 +112,7 @@ namespace BomberManGUI
         {
             var name = FileManager.FileManager.GetPlayerName();
            
-            DialogResult result = MessageBox.Show($"{name.ToUpper()} YOU {gameOver.ToUpper()}. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show($"{name.ToUpper()}, YOU {gameOver.ToUpper()}. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                this.Close();

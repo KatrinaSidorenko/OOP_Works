@@ -26,8 +26,12 @@ namespace BomberManGUI.Engine
         }
         public PlayerAction GetInput(Keys ki)
         {
-
-            return _inputConverter[ki];
+            if (_inputConverter.ContainsKey(ki))
+            {
+                return _inputConverter[ki];
+            }
+            
+            return PlayerAction.None;
         }
     }
 }

@@ -69,7 +69,7 @@
             // aboutGameToolStripMenuItem
             // 
             this.aboutGameToolStripMenuItem.Name = "aboutGameToolStripMenuItem";
-            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.aboutGameToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
             this.aboutGameToolStripMenuItem.Text = "About Game";
             this.aboutGameToolStripMenuItem.Click += new System.EventHandler(this.aboutGameToolStripMenuItem_Click);
             // 
@@ -95,6 +95,9 @@
             // 
             // dataLabel
             // 
+            this.dataLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dataLabel.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dataLabel.Location = new System.Drawing.Point(117, 35);
@@ -127,6 +130,7 @@
             // 
             // GameForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 664);

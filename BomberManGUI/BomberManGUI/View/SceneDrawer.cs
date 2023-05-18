@@ -3,6 +3,7 @@ using BomberManGUI.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace BomberManGUI.View
@@ -28,7 +29,7 @@ namespace BomberManGUI.View
             _imgMap = new PictureBox[_sizeX, _sizeY];
             PhisicMap = new Map();
 
-            _gamePanel.Controls.Clear();
+            //_gamePanel.Controls.Clear();
 
             for (var x = 0; x < _sizeX; x++)
             {
@@ -39,6 +40,8 @@ namespace BomberManGUI.View
             }
 
             CreatePlayer();
+
+            _gamePanel.Show();
         }
 
         private void CreatePlayer()

@@ -76,6 +76,7 @@ namespace BomberManGUI.Engine
         }
         private bool CloseWindowRequest()
         {
+            GameState = GameState.Exit;
             return false;
         }
 

@@ -11,6 +11,7 @@ namespace BomberManGUI.Enums
         InProgress,
         TimeLeftEnd,
         Dead,
-        Victory
+        Victory,
+        Exit
     }
 }
