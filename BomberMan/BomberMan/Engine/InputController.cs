@@ -26,7 +26,12 @@ namespace Bomberman
         {
             ConsoleKeyInfo ki = Console.ReadKey(true);
 
-            return _inputConverter[ki.Key];            
+            if (_inputConverter.ContainsKey(ki.Key))
+            {
+                return _inputConverter[ki.Key];
+            }
+            
+            return PlayerAction.None;
         }
     }
 }

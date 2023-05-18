@@ -14,10 +14,6 @@ namespace Bomberman.GameObjects
         public override bool CanMoveThrough => true;
 
         public override bool CanBeDestroyed => false;
-        public Player()
-        {
-            Character = FileManager.GetCharacter();
-        }
         public override void Action(GameLogic game)
         {
             game.GameState = GameState.Dead;

@@ -16,6 +16,7 @@ namespace Bomberman
         {
             _gameLogic = gameLogic;
             _currentMap = _gameLogic.MainMap;
+            
         }
         public void DrawScene()
         {
@@ -40,6 +41,11 @@ namespace Bomberman
             Console.WriteLine($"{_gameLogic.Walls} walls left to destroy");
             Console.SetCursorPosition(45, 13);
             Console.Write($"Time left: {_gameLogic.Timer.GetRestOfTheTime().ToString(@"mm\:ss")}");
+        }
+
+        public void SetPlayerCharacter()
+        {
+            _currentMap[_currentMap.PlayerYCoordiante, _currentMap.PlayerXCoordiante].Character = FileManager.GetCharacter();
         }
     }
 }

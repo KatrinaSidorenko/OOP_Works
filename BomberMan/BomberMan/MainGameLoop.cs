@@ -32,6 +32,7 @@ namespace Bomberman
                 Console.WindowHeight = Console.BufferHeight = 30;
 
                 _menu.ProcessMenuSatrt();
+                _graphics.SetPlayerCharacter();
 
                 Console.Clear();
 
