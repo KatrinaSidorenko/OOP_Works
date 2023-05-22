@@ -23,7 +23,7 @@ namespace BomberManGUI.GameObjects.Walls
                 game.Walls--;               
             }            
         }
-        public override void Draw(SceneDrawer drawer, int x, int y)
+        public override void Draw(BaseSceneManager drawer, int x, int y)
         {
             drawer.DrawObject(typeof(TempWall), x, y);
         }

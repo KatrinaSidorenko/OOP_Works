@@ -6,6 +6,7 @@ using BomberManGUI.View;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using BomberManGUI.Helpers;
 
 namespace BomberManGUI.Engine
 {
@@ -20,13 +21,13 @@ namespace BomberManGUI.Engine
         public Timer Timer;
         private Queue<(int, int)> _bombCoordinates = new Queue<(int, int)>();
         private Thread _bombThread;
-        private SceneDrawer _movementsUI;
+        private BaseSceneManager _movementsUI;
         private GamePhisics _gamePhisics;
         private Dictionary<PlayerAction, Func<bool>> _actionCollection;
 
-        public GameLogic(SceneDrawer board, Map map)
+        public GameLogic(BaseSceneManager board)
         {
-            MainMap = map;
+            MainMap = board.PhisicMap;
             Walls = MainMap.TotalAmountOfTempWalls;
             Timer = new Timer(this);
             _gamePhisics = new GamePhisics(MainMap);
@@ -51,7 +52,7 @@ namespace BomberManGUI.Engine
                 }
                 else
                 {
-                    PlayerMoveRequest(Converter.ActionToDirection[input]);
+                    PlayerMoveRequest(BaseConverter.ActionToDirection[input]);
                 }
             }
 
@@ -60,8 +61,8 @@ namespace BomberManGUI.Engine
 
         private void PlayerMoveRequest(Direction direction)
         {
-            int newY = _playerYCoordinate + Converter.DirectionToCoordinates[direction].dy;
-            int newX = _playerXCoordinate + Converter.DirectionToCoordinates[direction].dx;
+            int newY = _playerYCoordinate + BaseConverter.DirectionToCoordinates[direction].dy;
+            int newX = _playerXCoordinate + BaseConverter.DirectionToCoordinates[direction].dx;
             GameObject currentObject = MainMap[newX, newY];
 
             if (currentObject.CanMoveThrough)
@@ -114,7 +115,7 @@ namespace BomberManGUI.Engine
         private void CreateBlustWaveRequest()
         {
             Thread.Sleep(2000);
-            MusicManager.BombSoundPlay();
+            _movementsUI.PlayMusic();
 
             if (!(_bombCoordinates.Count() == 0))
             {

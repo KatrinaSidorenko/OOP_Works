@@ -1,5 +1,6 @@
 ﻿using BomberManGUI.GameObjects;
 using BomberManGUI.GameObjects.Walls;
+using BomberManGUI.Helpers;
 using BomberManGUI.View;
 using System;
 using System.Collections.Generic;
@@ -10,32 +11,9 @@ using System.Threading.Tasks;
 
 namespace BomberManGUI.Enums
 {
-    public static class Converter
+    public class Converter : BaseConverter
     {
-        public static Dictionary<PlayerAction, Direction> ActionToDirection = new Dictionary<PlayerAction, Direction>()
-        {
-            { PlayerAction.Up, Direction.Up },
-            { PlayerAction.Down, Direction.Down },
-            { PlayerAction.Left, Direction.Left },
-            { PlayerAction.Right, Direction.Right },
-        };
-
-        public static Dictionary<Direction, (int dx, int dy)> DirectionToCoordinates = new Dictionary<Direction, (int dy, int dx)>
-        {
-            { Direction.Up, (0, -1) },
-            { Direction.Down, (0, 1) },
-            { Direction.Right, (1, 0) },
-            { Direction.Left, (-1, 0) }
-        };
-
-        public static Dictionary<Direction, (int pointX, int pointY)> DirectionToPointCoordinates = new Dictionary<Direction, (int pointX, int pointY)>
-        {
-            { Direction.Up, (0, - SceneDrawer.BoxSize + 1) },
-            { Direction.Down, (0, + SceneDrawer.BoxSize - 1) },
-            { Direction.Right, (+ SceneDrawer.BoxSize - 1, 0) },
-            { Direction.Left, (- SceneDrawer.BoxSize + 1, 0) }
-        };
-
+       
         public static Dictionary<Type, Bitmap> ObjectTypeToPicture = new Dictionary<Type, Bitmap>()
         {            
             {typeof(Player),  Properties.Resources.Bomber },
@@ -46,6 +24,14 @@ namespace BomberManGUI.Enums
             {typeof(EmptySpace), Properties.Resources.ground },
             {typeof(Bomb), Properties.Resources.bomb },
             {typeof(ConcreteWall), Properties.Resources.concreteWall }
+        };
+
+        public static Dictionary<Direction, (int pointX, int pointY)> DirectionToPointCoordinates = new Dictionary<Direction, (int pointX, int pointY)>
+        {
+            { Direction.Up, (0, - SceneManager.BoxSize + 1) },
+            { Direction.Down, (0, + SceneManager.BoxSize - 1) },
+            { Direction.Right, (+ SceneManager.BoxSize - 1, 0) },
+            { Direction.Left, (- SceneManager.BoxSize + 1, 0) }
         };
     }
 }

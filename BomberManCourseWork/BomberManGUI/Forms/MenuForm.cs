@@ -26,20 +26,20 @@ namespace BomberManGUI
 
         }
 
-        private void startButton_Click(object sender, EventArgs e)
-        {
-            if (nameField.Text != String.Empty)
-            {
-                this.Hide();
-                FileManager.FileManager.WritePlayerNameIntoFile(nameField.Text);
-                var form = new GameForm();
-                form.Show();
-            }
-            else
-            {
-                MessageBox.Show("Enter your name");
-            }
-        }
+        //private void startButton_Click(object sender, EventArgs e)
+        //{
+        //    if (nameField.Text != String.Empty)
+        //    {
+        //        this.Hide();
+        //        FileManager.FileManager.WritePlayerNameIntoFile(nameField.Text);
+        //        var form = new GameForm();
+        //        form.Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Enter your name");
+        //    }
+        //}
 
         private void closeButton_Click(object sender, EventArgs e)
         {
@@ -62,8 +62,7 @@ namespace BomberManGUI
         private void authoriseButton_Click(object sender, EventArgs e)
         {
             if (CheckTextIsNotEmpty())
-            {
-                
+            {               
                 if (_userService.AuthoriseUser(nameField.Text, PasswordHasher.Hash(passwordText.Text)))
                 {
                     this.Hide();
@@ -108,9 +107,13 @@ namespace BomberManGUI
                 else
                 {
                     MessageBox.Show("Invalid input user data");
-                }
-                
+                }               
             }
+        }
+
+        private void passwordText_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

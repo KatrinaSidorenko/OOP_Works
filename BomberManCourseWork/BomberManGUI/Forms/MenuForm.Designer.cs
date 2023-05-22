@@ -81,6 +81,7 @@
             this.passwordText.Size = new System.Drawing.Size(324, 38);
             this.passwordText.TabIndex = 4;
             this.passwordText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.passwordText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
             // 
             // passwordLabel
             // 

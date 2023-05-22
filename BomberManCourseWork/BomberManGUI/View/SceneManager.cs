@@ -3,33 +3,33 @@ using BomberManGUI.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace BomberManGUI.View
 {
-    public class SceneDrawer
+    public class SceneManager : BaseSceneManager
     {
         private Panel _gamePanel;
         private PictureBox[,] _imgMap;
-        public Map PhisicMap;
+        public override Map PhisicMap { get; set; }
         public static int BoxSize = 38;
         private PictureBox _player = new PictureBox();
         private int _sizeX = Constant.WindowXSize;
         private int _sizeY = Constant.WindowYSize;
-        public SceneDrawer(Panel panel) 
+        private static string _bombSoundPath = _bombSoundPath ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bomb_sound.wav");
+        public SceneManager(Panel panel) 
         { 
             _gamePanel = panel;
 
             DrawStartScene();
         }
 
-        private void DrawStartScene()
+        public override void DrawStartScene()
         {
             _imgMap = new PictureBox[_sizeX, _sizeY];
             PhisicMap = new Map();
-
-            //_gamePanel.Controls.Clear();
 
             for (var x = 0; x < _sizeX; x++)
             {
@@ -55,7 +55,7 @@ namespace BomberManGUI.View
             _player.Image = Converter.ObjectTypeToPicture[typeof(Player)];
         }
 
-        public void DrawObject(Type type, int x, int y)
+        public override void DrawObject(Type type, int x, int y)
         {
             PictureBox picture = new PictureBox();
             picture.Location = new Point(x * (BoxSize - 1), y * (BoxSize - 1));
@@ -67,19 +67,19 @@ namespace BomberManGUI.View
 
             picture.Image = Converter.ObjectTypeToPicture[type];
         }
-        public void DrawPlayerMove(Direction direction, int x, int y)
+        public override void DrawPlayerMove(Direction direction, int x, int y)
         {
             _imgMap[x, y].Image = Converter.ObjectTypeToPicture[typeof(EmptySpace)];
             var newCoordinates = Converter.DirectionToPointCoordinates[direction];
             _player.Location = new Point(_player.Location.X + newCoordinates.pointX, _player.Location.Y + newCoordinates.pointY);
             
         }
-        public void DrawBomb(int x, int y)
+        public override void DrawBomb(int x, int y)
         {
             _imgMap[x, y].Image = Converter.ObjectTypeToPicture[typeof(Bomb)];
         }
 
-        public void BaseObjectsDrawer(List<(int, int)> coordinates, Type objType)
+        public override void BaseObjectsDrawer(List<(int, int)> coordinates, Type objType)
         {
             foreach (var coordinate in coordinates)
             {
@@ -87,14 +87,19 @@ namespace BomberManGUI.View
             }
         }
 
-        public void DrawBlustWave(List<(int, int)> coordinates)
+        public override void DrawBlustWave(List<(int, int)> coordinates)
         {
             BaseObjectsDrawer(coordinates, typeof(BlustWave));           
         }
 
-        public void DrawEmptySpaces(List<(int, int)> coordinates)
+        public override void DrawEmptySpaces(List<(int, int)> coordinates)
         {
             BaseObjectsDrawer(coordinates, typeof(EmptySpace));
+        }
+
+        public override void PlayMusic()
+        {
+            MusicManager.BombSoundPlay();
         }
     }
 }

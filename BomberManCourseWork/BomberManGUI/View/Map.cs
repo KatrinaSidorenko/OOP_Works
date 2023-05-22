@@ -2,12 +2,6 @@
 using BomberManGUI.GameObjects;
 using BomberManGUI.Enums;
 using BomberManGUI.GameObjects.Walls;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BomberManGUI.View
 {
@@ -17,6 +11,7 @@ namespace BomberManGUI.View
         public int TotalAmountOfTempWalls;
         public int PlayerXCoordiante;
         public int PlayerYCoordiante;
+        public Player Player;
         private int _xSize = Constant.WindowXSize;
         private int _ySize = Constant.WindowYSize;
         private Random _rand = new Random();
@@ -73,6 +68,7 @@ namespace BomberManGUI.View
             PlayerXCoordiante = _rand.Next(1, Constant.WindowXSize - 1);
             PlayerYCoordiante = _rand.Next(1, Constant.WindowYSize - 1);
 
+            Player = new Player();
             _gameObjectsMap[PlayerXCoordiante, PlayerYCoordiante] = new Player();
         }
 

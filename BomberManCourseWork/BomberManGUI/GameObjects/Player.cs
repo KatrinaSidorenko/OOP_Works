@@ -14,7 +14,7 @@ namespace BomberManGUI.GameObjects
         {
             game.GameState = GameState.Dead;
         }
-        public override void Draw(SceneDrawer drawer, int x, int y)
+        public override void Draw(BaseSceneManager drawer, int x, int y)
         {
             drawer.DrawObject(typeof(Player), x, y);
         }

@@ -11,7 +11,7 @@ namespace BomberManGUI
     {
         private InputController _inputController;
         private GameLogic _logic;
-        private SceneDrawer _board;
+        private SceneManager _board;
         public GameForm()
         {            
             InitializeComponent();            
@@ -21,9 +21,9 @@ namespace BomberManGUI
 
         private void Init()
         {
-            _board = new SceneDrawer(gamePanel);
+            _board = new SceneManager(gamePanel);
             _inputController = new InputController();
-            _logic = new GameLogic(_board, _board.PhisicMap);
+            _logic = new GameLogic(_board);
         }
 
         private void aboutGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -109,10 +109,8 @@ namespace BomberManGUI
         }
 
         private void ShowGameOverBox(string gameOver)
-        {
-            var name = FileManager.FileManager.GetPlayerName();
-           
-            DialogResult result = MessageBox.Show($"{name.ToUpper()}, YOU {gameOver.ToUpper()}. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {           
+            DialogResult result = MessageBox.Show($"YOU {gameOver.ToUpper()}. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                this.Close();

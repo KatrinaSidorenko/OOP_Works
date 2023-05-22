@@ -13,7 +13,7 @@ namespace BomberManGUI
     {
         private static string _bombSoundPath = _bombSoundPath ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bomb_sound.wav");
 
-        public  static void BombSoundPlay()
+        public static void BombSoundPlay()
         {
             try
             {

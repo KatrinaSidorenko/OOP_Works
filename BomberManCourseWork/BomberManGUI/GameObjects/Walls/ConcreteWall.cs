@@ -8,7 +8,7 @@ namespace BomberManGUI.GameObjects.Walls
     {        
 
         public override bool CanBeDestroyed => false;
-        public override void Draw(SceneDrawer drawer, int x, int y)
+        public override void Draw(BaseSceneManager drawer, int x, int y)
         {
             drawer.DrawObject(typeof(ConcreteWall), x, y);
         }
