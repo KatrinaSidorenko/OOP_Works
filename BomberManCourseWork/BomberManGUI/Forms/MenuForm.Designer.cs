@@ -31,8 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             this.nameField = new System.Windows.Forms.TextBox();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.startButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.passwordText = new System.Windows.Forms.TextBox();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.authoriseButton = new System.Windows.Forms.Button();
+            this.registerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // nameField
@@ -57,22 +60,6 @@
             this.nameLabel.Text = "Enter your name:";
             this.nameLabel.Click += new System.EventHandler(this.nameLabel_Click);
             // 
-            // startButton
-            // 
-            this.startButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.startButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.startButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("startButton.BackgroundImage")));
-            this.startButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.startButton.Location = new System.Drawing.Point(707, 434);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(192, 75);
-            this.startButton.TabIndex = 2;
-            this.startButton.UseVisualStyleBackColor = false;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
             // closeButton
             // 
             this.closeButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -85,6 +72,53 @@
             this.closeButton.UseVisualStyleBackColor = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
+            // passwordText
+            // 
+            this.passwordText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.passwordText.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.passwordText.Location = new System.Drawing.Point(638, 295);
+            this.passwordText.Name = "passwordText";
+            this.passwordText.Size = new System.Drawing.Size(324, 38);
+            this.passwordText.TabIndex = 4;
+            this.passwordText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.passwordLabel.Location = new System.Drawing.Point(632, 235);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(344, 36);
+            this.passwordLabel.TabIndex = 5;
+            this.passwordLabel.Text = "Enter your password:";
+            this.passwordLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // authoriseButton
+            // 
+            this.authoriseButton.BackColor = System.Drawing.Color.LightGray;
+            this.authoriseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.authoriseButton.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.authoriseButton.Location = new System.Drawing.Point(724, 383);
+            this.authoriseButton.Name = "authoriseButton";
+            this.authoriseButton.Size = new System.Drawing.Size(139, 49);
+            this.authoriseButton.TabIndex = 6;
+            this.authoriseButton.Text = "Sign In";
+            this.authoriseButton.UseVisualStyleBackColor = false;
+            this.authoriseButton.Click += new System.EventHandler(this.authoriseButton_Click);
+            // 
+            // registerButton
+            // 
+            this.registerButton.BackColor = System.Drawing.Color.LightGray;
+            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.registerButton.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.registerButton.Location = new System.Drawing.Point(724, 464);
+            this.registerButton.Name = "registerButton";
+            this.registerButton.Size = new System.Drawing.Size(139, 49);
+            this.registerButton.TabIndex = 7;
+            this.registerButton.Text = "Sign Up";
+            this.registerButton.UseVisualStyleBackColor = false;
+            this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -94,8 +128,11 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1030, 633);
+            this.Controls.Add(this.registerButton);
+            this.Controls.Add(this.authoriseButton);
+            this.Controls.Add(this.passwordLabel);
+            this.Controls.Add(this.passwordText);
             this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.startButton);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.nameField);
             this.DoubleBuffered = true;
@@ -113,7 +150,10 @@
 
         private System.Windows.Forms.TextBox nameField;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.TextBox passwordText;
+        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.Button authoriseButton;
+        private System.Windows.Forms.Button registerButton;
     }
 }

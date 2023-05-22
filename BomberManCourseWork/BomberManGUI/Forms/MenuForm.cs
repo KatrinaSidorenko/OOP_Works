@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BomberManGUI.Helpers;
+using BomberManGUI.UsersManager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,11 @@ namespace BomberManGUI
 {
     public partial class MenuForm : Form
     {
+        private UserService _userService;
         public MenuForm()
         {
             InitializeComponent();
+            _userService = new UserService();
         }
 
         private void nameLabel_Click(object sender, EventArgs e)
@@ -48,6 +52,65 @@ namespace BomberManGUI
 
         private void nameField_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void authoriseButton_Click(object sender, EventArgs e)
+        {
+            if (CheckTextIsNotEmpty())
+            {
+                
+                if (_userService.AuthoriseUser(nameField.Text, PasswordHasher.Hash(passwordText.Text)))
+                {
+                    this.Hide();
+                    var form = new GameForm();
+                    form.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input user data");
+                }
+            }
+        }
+
+        private bool CheckTextIsNotEmpty()
+        {
+            if (nameField.Text == String.Empty)
+            {
+                MessageBox.Show("Enter your name");
+                return false;
+            }
+            else if(passwordLabel.Text == String.Empty)
+            {
+                MessageBox.Show("Enter your password");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void registerButton_Click(object sender, EventArgs e)
+        {
+            if (CheckTextIsNotEmpty())
+            {
+                if (_userService.RegisterUser(new User() { Name = nameField.Text, Password = PasswordHasher.Hash(passwordText.Text) }))
+                {
+                    this.Hide();
+                    var form = new GameForm();
+                    form.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input user data");
+                }
+                
+            }
         }
     }
 }

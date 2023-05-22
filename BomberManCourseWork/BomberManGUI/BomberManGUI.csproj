@@ -36,6 +36,9 @@
     <ApplicationIcon>bomb-png-46589-Windows.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +60,7 @@
     <Compile Include="Helpers\Converter.cs" />
     <Compile Include="Helpers\Direction.cs" />
     <Compile Include="Helpers\GameState.cs" />
+    <Compile Include="Helpers\PasswordHasher.cs" />
     <Compile Include="Helpers\PlayerAction.cs" />
     <Compile Include="FileManager\FileManager.cs" />
     <Compile Include="Forms\GameForm.cs">
@@ -82,6 +86,9 @@
     <Compile Include="GameObjects\Walls\StrongTempWall.cs" />
     <Compile Include="GameObjects\Walls\TempWall.cs" />
     <Compile Include="MusicManager.cs" />
+    <Compile Include="UsersManager\User.cs" />
+    <Compile Include="UsersManager\UserRepository.cs" />
+    <Compile Include="UsersManager\UserService.cs" />
     <Compile Include="View\SceneDrawer.cs" />
     <Compile Include="Forms\MenuForm.cs">
       <SubType>Form</SubType>
@@ -111,6 +118,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
