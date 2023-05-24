@@ -12,7 +12,6 @@ namespace BomberManGUI.View
         public abstract void DrawStartScene();
         public abstract void DrawObject(Type type, int x, int y);
         public abstract Map PhisicMap { get; set; }
-
         public abstract void DrawPlayerMove(Direction direction, int x, int y);
         public abstract void DrawBomb(int x, int y);
         public abstract void BaseObjectsDrawer(List<(int, int)> coordinates, Type objType);
