@@ -9,10 +9,9 @@ using System.Windows.Forms;
 
 namespace BomberManGUI.Engine
 {
-    public class InputController : BaseInputController
+    public class InputController 
     {
         private Dictionary<Keys, PlayerAction> _inputConverter;
-        private Dictionary<ConsoleKey, PlayerAction> _inputConsoleConverter;
         public InputController()
         {
             _inputConverter = new Dictionary<Keys, PlayerAction>()
@@ -25,7 +24,7 @@ namespace BomberManGUI.Engine
                 {Keys.Down, PlayerAction.Down},
             };
         }
-        public  PlayerAction GetInput(Keys ki)
+        public PlayerAction GetInput(Keys ki)
         {
             if (_inputConverter.ContainsKey(ki))
             {
@@ -35,9 +34,5 @@ namespace BomberManGUI.Engine
             return PlayerAction.None;
         }
 
-        public override PlayerAction GetInput()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

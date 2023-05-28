@@ -12,16 +12,16 @@ namespace BomberManGUI.Engine
 {
     public class GameLogic
     {
-        public readonly Map MainMap;
-        private int _playerXCoordinate;
-        private int _playerYCoordinate;
+        public readonly Map MainMap;       
         public GameState GameState = GameState.InProgress;
         public int Score;
         public int Walls;
         public Timer Timer;
+        private int _playerXCoordinate;
+        private int _playerYCoordinate;
         private Queue<(int, int)> _bombCoordinates = new Queue<(int, int)>();
         private Thread _bombThread;
-        private BaseSceneManager _movementsUI;
+        private BaseSceneManager _sceneController;
         private GamePhisics _gamePhisics;
         private Dictionary<PlayerAction, Func<bool>> _actionCollection;
 
@@ -31,7 +31,7 @@ namespace BomberManGUI.Engine
             Walls = MainMap.TotalAmountOfTempWalls;
             Timer = new Timer(this);
             _gamePhisics = new GamePhisics(MainMap);
-            _movementsUI = board;
+            _sceneController = board;
             _playerXCoordinate = MainMap.PlayerXCoordiante;
             _playerYCoordinate = MainMap.PlayerYCoordiante;
             _actionCollection = new Dictionary<PlayerAction, Func<bool>>()
@@ -68,7 +68,7 @@ namespace BomberManGUI.Engine
             if (currentObject.CanMoveThrough)
             {
                 currentObject.Action(this);
-                _movementsUI.DrawPlayerMove(direction, _playerXCoordinate, _playerYCoordinate);
+                _sceneController.DrawPlayerMove(direction, _playerXCoordinate, _playerYCoordinate);
                 _gamePhisics.PlayerPhisicMove((_playerXCoordinate, _playerYCoordinate), (newX, newY));
 
                 _playerYCoordinate = newY;
@@ -103,7 +103,7 @@ namespace BomberManGUI.Engine
             }
 
             _gamePhisics.CreateBomb(tempX, tempY);
-            _movementsUI.DrawBomb(tempX, tempY);
+            _sceneController.DrawBomb(tempX, tempY);
 
             _bombCoordinates.Enqueue((tempX, tempY));
 
@@ -115,7 +115,7 @@ namespace BomberManGUI.Engine
         private void CreateBlustWaveRequest()
         {
             Thread.Sleep(2000);
-            _movementsUI.PlayMusic();
+            _sceneController.PlayMusic();
 
             if (!(_bombCoordinates.Count() == 0))
             {
@@ -123,12 +123,12 @@ namespace BomberManGUI.Engine
                 coordinates.Add(_bombCoordinates.Dequeue());
 
                 _gamePhisics.CreateBlustWave(coordinates);
-                _movementsUI.DrawBlustWave(coordinates);
+                _sceneController.DrawBlustWave(coordinates);
 
                 Thread.Sleep(1000);
 
                 _gamePhisics.ClearBombSurrounding(coordinates);
-                _movementsUI.DrawEmptySpaces(coordinates);
+                _sceneController.DrawEmptySpaces(coordinates);
             }
         }
 

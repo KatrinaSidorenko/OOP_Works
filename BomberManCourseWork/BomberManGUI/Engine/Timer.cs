@@ -8,7 +8,7 @@ namespace BomberManGUI.Engine
     {
         private DateTime _startTime;
         private GameLogic _logic;
-        private TimeSpan _duration = new TimeSpan(0, 2, 0);
+        private TimeSpan _gameDuration = new TimeSpan(0, 2, 0);
         public Timer(GameLogic _gameLogic)
         {
             _logic = _gameLogic;
@@ -17,12 +17,12 @@ namespace BomberManGUI.Engine
 
         public void CheckGameOverTime()
         {
-            if (DateTime.Now.Subtract(_startTime) > _duration && _logic.Walls == 0
-                || DateTime.Now.Subtract(_startTime) < _duration && _logic.Walls == 0)
+            if (DateTime.Now.Subtract(_startTime) > _gameDuration && _logic.Walls == 0
+                || DateTime.Now.Subtract(_startTime) < _gameDuration && _logic.Walls == 0)
             {
                 _logic.GameState = GameState.Victory;
             }
-            else if (DateTime.Now.Subtract(_startTime) > _duration)
+            else if (DateTime.Now.Subtract(_startTime) > _gameDuration)
             {
                 _logic.GameState = GameState.TimeLeftEnd;
             }
@@ -35,7 +35,7 @@ namespace BomberManGUI.Engine
                 return TimeSpan.Zero;
             }
 
-            return _duration - (DateTime.Now.Subtract(_startTime));
+            return _gameDuration - (DateTime.Now.Subtract(_startTime));
         }
     }
    }

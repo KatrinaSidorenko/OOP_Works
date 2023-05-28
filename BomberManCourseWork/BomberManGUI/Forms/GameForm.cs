@@ -11,7 +11,7 @@ namespace BomberManGUI
     {
         private InputController _inputController;
         private GameLogic _logic;
-        private SceneManager _board;
+        private SceneManager _graphics;
         public GameForm()
         {            
             InitializeComponent();            
@@ -21,9 +21,9 @@ namespace BomberManGUI
 
         private void Init()
         {
-            _board = new SceneManager(gamePanel);
+            _graphics = new SceneManager(gamePanel);
             _inputController = new InputController();
-            _logic = new GameLogic(_board);
+            _logic = new GameLogic(_graphics);
         }
 
         private void aboutGameToolStripMenuItem_Click(object sender, EventArgs e)

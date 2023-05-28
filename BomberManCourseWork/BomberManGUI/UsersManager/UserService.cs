@@ -14,17 +14,14 @@ namespace BomberManGUI.UsersManager
             _userRepository = new UserRepository();
         }
         
-        public bool RegisterUser(User user)
+        public void RegisterUser(User user)
         {
             if(user != null)
             {
                 user.Id = Guid.NewGuid();
                 _userRepository.Add(user);
-
-                return true;
             }
 
-            return false;
         }
 
         public bool AuthoriseUser(string name, string password)
@@ -32,6 +29,18 @@ namespace BomberManGUI.UsersManager
             var user = _userRepository.GetByPredicate(u => u.Name == name && u.Password == password);
 
             return user != null;
+        }
+
+        public bool CheckUserNameAvailability(string userName)
+        {
+            var user = _userRepository.GetByPredicate(u => u.Name == userName);
+
+            if(user == null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

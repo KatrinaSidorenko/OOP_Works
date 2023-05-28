@@ -11,14 +11,13 @@ namespace BomberManGUI.View
 {
     public class SceneManager : BaseSceneManager
     {
-        private Panel _gamePanel;
-        private PictureBox[,] _imgMap;
         public override Map PhisicMap { get; set; }
         public static int BoxSize = 38;
+        private Panel _gamePanel;
+        private PictureBox[,] _imgMap;      
         private PictureBox _player = new PictureBox();
         private int _sizeX = Constant.WindowXSize;
         private int _sizeY = Constant.WindowYSize;
-        private static string _bombSoundPath = _bombSoundPath ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bomb_sound.wav");
         public SceneManager(Panel panel) 
         { 
             _gamePanel = panel;

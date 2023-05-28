@@ -42,24 +42,6 @@ namespace BomberManGUI.UsersManager
                 throw new InvalidOperationException($"Failed add entity to file: {ex.Message}");
             }
         }
-        public User GetById(Guid id)
-        {
-            try
-            {
-                var entityResult = GetByPredicate(entity => entity.Id.Equals(id));
-
-                if (entityResult != null)
-                {
-                    return entityResult;
-                }
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException($"Failed get entity by id: {ex.Message}");
-            }
-        }
 
         private void WriteToFile(List<User> users)
         {

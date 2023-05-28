@@ -12,7 +12,7 @@ namespace BomberMan
     {
         private GameLogic _logic;
         private ConsoleSceneManager _graphics;
-        private BaseInputController _inputController;
+        private ConsoleInpuControler _inputController;
 
         public MainGameLoop()
         {

@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\BaseInputController.cs" />
     <Compile Include="Engine\GameLogic.cs" />
     <Compile Include="Engine\GamePhisics.cs" />
     <Compile Include="Engine\InputController.cs" />

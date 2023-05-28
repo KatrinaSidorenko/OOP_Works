@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BomberMan
 {
-    public class ConsoleInpuControler : BaseInputController
+    public class ConsoleInpuControler
     {
         private Dictionary<ConsoleKey, PlayerAction> _inputConsoleConverter;
         public ConsoleInpuControler()
@@ -25,7 +25,7 @@ namespace BomberMan
             };
         }
 
-        public override PlayerAction GetInput()
+        public PlayerAction GetInput()
         {
             ConsoleKeyInfo ki = Console.ReadKey(true);
 

@@ -26,21 +26,6 @@ namespace BomberManGUI
 
         }
 
-        //private void startButton_Click(object sender, EventArgs e)
-        //{
-        //    if (nameField.Text != String.Empty)
-        //    {
-        //        this.Hide();
-        //        FileManager.FileManager.WritePlayerNameIntoFile(nameField.Text);
-        //        var form = new GameForm();
-        //        form.Show();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Enter your name");
-        //    }
-        //}
-
         private void closeButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want leave the game?", "Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -98,20 +83,26 @@ namespace BomberManGUI
         {
             if (CheckTextIsNotEmpty())
             {
-                if (_userService.RegisterUser(new User() { Name = nameField.Text, Password = PasswordHasher.Hash(passwordText.Text) }))
+                if (_userService.CheckUserNameAvailability(nameField.Text))
                 {
+                    _userService.RegisterUser(new User() { Name = nameField.Text, Password = PasswordHasher.Hash(passwordText.Text) });
                     this.Hide();
                     var form = new GameForm();
                     form.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Invalid input user data");
+                    MessageBox.Show("This name is already used by another user");
                 }               
             }
         }
 
         private void passwordText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuForm_Load(object sender, EventArgs e)
         {
 
         }
