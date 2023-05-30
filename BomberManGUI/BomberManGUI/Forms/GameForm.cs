@@ -28,14 +28,13 @@ namespace BomberManGUI
 
         private void aboutGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The goal of the game:".ToUpper() + "destroy all the walls - 'o' in 2 minutes" +
-                "\nBefore starting the game, you will be given the opportunity to choose the appearance of the player" +
-                "\nSome explanations:" +
-                "\n\t'@' - bomb mark" +
-                "\n\t'#' - indestructible wall" +
-                "\n\t'o' - temporary wall (this type of walls can has different strength)" +
-                "\n\t'.' - explosion trace" +
-                "\n\t'♦' - coin (here is differnt types of coin)" +
+            MessageBox.Show("The goal of the game:".ToUpper() + "destroy all the walls of gray color - in 2 minutes" +
+                "\nSome explanations what type of characters exist in the game:" +
+                "\n\t - bomb" +
+                "\n\t - indestructible wall" +
+                "\n\t - temporary wall (this type of walls can has different strength)" +
+                "\n\t - explosion trace (looks like a fire)" +
+                "\n\t - coin (here is differnt types of coin)" +
                 "\nWARNING!! If you stay near the bomb for a long time, the explosion will kill you", "Game Rules");
         }
 
