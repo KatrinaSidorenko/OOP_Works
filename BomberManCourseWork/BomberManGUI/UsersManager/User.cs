@@ -11,5 +11,7 @@ namespace BomberManGUI.UsersManager
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
+        public int TotalAmountOfGames { get; set; }
+        public int AmountOfWonGames { get; set; }
     }
 }

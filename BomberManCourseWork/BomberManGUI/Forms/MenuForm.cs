@@ -51,7 +51,7 @@ namespace BomberManGUI
                 if (_userService.AuthoriseUser(nameField.Text, PasswordHasher.Hash(passwordText.Text)))
                 {
                     this.Hide();
-                    var form = new GameForm();
+                    var form = new GameForm(_userService);
                     form.Show();
                 }
                 else
@@ -87,7 +87,7 @@ namespace BomberManGUI
                 {
                     _userService.RegisterUser(new User() { Name = nameField.Text, Password = PasswordHasher.Hash(passwordText.Text) });
                     this.Hide();
-                    var form = new GameForm();
+                    var form = new GameForm(_userService);
                     form.Show();
                 }
                 else

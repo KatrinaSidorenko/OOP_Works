@@ -110,5 +110,27 @@ namespace BomberManGUI.UsersManager
                 WriteToFile(new List<User>());
             }
         }
+        public bool Update(Guid id, User entity)
+        {
+            try
+            {
+                var entities = GetAllItems();
+                int index = entities.FindIndex(ent => ent.Id.Equals(id));
+
+                if (index != -1)
+                {
+                    entities[index] = entity;
+                    WriteToFile(entities);
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed update entity: {ex.Message}");
+            }
+        }
     }
 }

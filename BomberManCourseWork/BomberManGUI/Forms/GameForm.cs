@@ -4,6 +4,7 @@ using BomberManGUI.View;
 using BomberManGUI.Engine;
 using BomberManGUI.Enums;
 using System.Xml.Linq;
+using BomberManGUI.UsersManager;
 
 namespace BomberManGUI
 {
@@ -12,8 +13,10 @@ namespace BomberManGUI
         private InputController _inputController;
         private GameLogic _logic;
         private SceneManager _graphics;
-        public GameForm()
-        {            
+        private UserService _userService;
+        public GameForm(UserService userService)
+        { 
+            _userService = userService;
             InitializeComponent();            
             Init();
             BackgroundSoundPlayer();
@@ -55,6 +58,7 @@ namespace BomberManGUI
             {
                 if(_logic.GameState == GameState.Dead || _logic.GameState == GameState.TimeLeftEnd)
                 {
+                    _userService.UpdateAmountOfGames(GameState.Dead);
                     ShowGameOverBox("dead");
                 }
                 else if(_logic.GameState == GameState.Exit)
@@ -63,6 +67,7 @@ namespace BomberManGUI
                 }
                 else
                 {
+                    _userService.UpdateAmountOfGames(GameState.Victory);
                     ShowGameOverBox("win");
                 }
             }
@@ -109,12 +114,18 @@ namespace BomberManGUI
         }
 
         private void ShowGameOverBox(string gameOver)
-        {           
-            DialogResult result = MessageBox.Show($"YOU {gameOver.ToUpper()}. Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+
+            MessageBox.Show($"{_userService.CurrentUser.Name.ToUpper()}, YOU {gameOver.ToUpper()}.");
+            DialogResult result = MessageBox.Show($" YOUR STATISTIC: " +
+                $"\t\n Total amount of games - {_userService.CurrentUser.TotalAmountOfGames}" +
+                $"\t\n Number of won games - {_userService.CurrentUser.AmountOfWonGames}" +
+                $"\t\n Number of lost games - {_userService.CurrentUser.TotalAmountOfGames - _userService.CurrentUser.AmountOfWonGames}." +
+                $"\t\n Do you want try again ?", "Game End", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                this.Close();
-               var form = new GameForm();
+               var form = new GameForm(_userService);
                 form.Show();
             }
             else

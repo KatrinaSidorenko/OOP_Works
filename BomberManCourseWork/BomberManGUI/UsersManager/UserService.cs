@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BomberManGUI.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace BomberManGUI.UsersManager
     public class UserService
     {
         private UserRepository _userRepository;
+        public User CurrentUser;
         public UserService()
         {
             _userRepository = new UserRepository();
@@ -19,6 +21,7 @@ namespace BomberManGUI.UsersManager
             if(user != null)
             {
                 user.Id = Guid.NewGuid();
+                CurrentUser = user;
                 _userRepository.Add(user);
             }
 
@@ -27,6 +30,7 @@ namespace BomberManGUI.UsersManager
         public bool AuthoriseUser(string name, string password)
         {
             var user = _userRepository.GetByPredicate(u => u.Name == name && u.Password == password);
+            CurrentUser = user;
 
             return user != null;
         }
@@ -41,6 +45,17 @@ namespace BomberManGUI.UsersManager
             }
 
             return false;
+        }
+
+        public void UpdateAmountOfGames(GameState gameState)
+        {
+            CurrentUser.TotalAmountOfGames++;
+            if(gameState == GameState.Victory)
+            {
+                CurrentUser.AmountOfWonGames++;
+            }
+
+            _userRepository.Update(CurrentUser.Id, CurrentUser);
         }
     }
 }
