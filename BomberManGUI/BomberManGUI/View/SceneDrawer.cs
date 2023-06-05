@@ -29,8 +29,6 @@ namespace BomberManGUI.View
             _imgMap = new PictureBox[_sizeX, _sizeY];
             PhisicMap = new Map();
 
-            //_gamePanel.Controls.Clear();
-
             for (var x = 0; x < _sizeX; x++)
             {
                 for(var y = 0; y < _sizeY; y++)
