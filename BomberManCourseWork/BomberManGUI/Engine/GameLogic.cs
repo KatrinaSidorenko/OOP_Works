@@ -130,8 +130,9 @@ namespace BomberManGUI.Engine
 
                 Thread.Sleep(1000);
 
-                _gamePhisics.ClearBombSurrounding(coordinates);
-                _sceneController.DrawEmptySpaces(coordinates);
+                var tempRand = new Random().Next(0, coordinates.Count);
+                _gamePhisics.ClearBombSurrounding(coordinates, coordinates[tempRand]);
+                _sceneController.DrawEmptySpaces(coordinates, coordinates[tempRand]);
             }
         }
 

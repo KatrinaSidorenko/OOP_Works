@@ -88,9 +88,11 @@ namespace BomberMan
             BaseObjectsDrawer(coordinates, typeof(BlustWave));
         }
 
-        public override void DrawEmptySpaces(List<(int, int)> coordinates)
+        public override void DrawEmptySpaces(List<(int, int)> coordinates, (int, int) newCoinCoordinates)
         {
             BaseObjectsDrawer(coordinates, typeof(EmptySpace));
+            Console.SetCursorPosition(newCoinCoordinates.Item1, newCoinCoordinates.Item2);
+            Console.Write(_typeToCharacter[typeof(ExpensiveCoin)]);
         }
 
         public override void PlayMusic()

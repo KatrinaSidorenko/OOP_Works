@@ -89,9 +89,10 @@ namespace BomberManGUI.View
             BaseObjectsDrawer(coordinates, typeof(BlustWave));           
         }
 
-        public override void DrawEmptySpaces(List<(int, int)> coordinates)
+        public override void DrawEmptySpaces(List<(int, int)> coordinates, (int, int) newCoinCoordinates)
         {
             BaseObjectsDrawer(coordinates, typeof(EmptySpace));
+            _imgMap[newCoinCoordinates.Item1, newCoinCoordinates.Item2].Image = Converter.ObjectTypeToPicture[typeof(ExpensiveCoin)];
         }
 
         public override void PlayMusic()

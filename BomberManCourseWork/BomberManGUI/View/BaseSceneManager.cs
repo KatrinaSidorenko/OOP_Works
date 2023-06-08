@@ -16,7 +16,7 @@ namespace BomberManGUI.View
         public abstract void DrawBomb(int x, int y);
         public abstract void BaseObjectsDrawer(List<(int, int)> coordinates, Type objType);
         public abstract void DrawBlustWave(List<(int, int)> coordinates);
-        public abstract void DrawEmptySpaces(List<(int, int)> coordinates);
+        public abstract void DrawEmptySpaces(List<(int, int)> coordinates, (int, int) newCoinCoordinates);
         public abstract void PlayMusic();
     }
 }

@@ -1,7 +1,9 @@
-﻿using BomberManGUI.GameObjects;
+﻿using BomberManGUI.Enums;
+using BomberManGUI.GameObjects;
 using BomberManGUI.View;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace BomberManGUI.Engine
 {
@@ -49,9 +51,10 @@ namespace BomberManGUI.Engine
             CreateObjectsHelper(coordinates, new BlustWave().GetType());
         }
 
-        public void ClearBombSurrounding(List<(int, int)> coordinates)
+        public void ClearBombSurrounding(List<(int, int)> coordinates, (int, int) newCoinCoordinates)
         {
             CreateObjectsHelper(coordinates, new EmptySpace().GetType());
+            _map[newCoinCoordinates.Item1, newCoinCoordinates.Item2] = new ExpensiveCoin();
         }
     }
 }
