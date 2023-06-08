@@ -1,15 +1,11 @@
 ﻿using BomberManGUI.GameObjects;
-using BomberManGUI.Enums;
 using BomberManGUI.View;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace BomberManGUI.Engine
 {
+    //Ввідповідає за роботу з масивом через клас Map, що складається з ігрових об’єктів. Отрмує запити від класу GameLogic
     public class GamePhisics
     {
         private Map _map;

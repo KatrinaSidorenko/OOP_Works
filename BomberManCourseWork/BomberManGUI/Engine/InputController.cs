@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace BomberManGUI.Engine
 {
+    // Відповідає за отримання введених користувачем даних та їх конвертування у відповідне перелічення PleayerAction 
     public class InputController 
     {
         private Dictionary<Keys, PlayerAction> _inputConverter;

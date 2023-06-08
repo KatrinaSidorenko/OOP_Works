@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BomberManGUI
 {
+    // Зберігає, посилання до файлів із звуковими ефектами, що потім використовуються у фоновомі режимі процесу гри та під час вибуху бомб
     public static class MusicManager
     {
         private static string _bombSoundPath = _bombSoundPath ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bomb_sound.wav");

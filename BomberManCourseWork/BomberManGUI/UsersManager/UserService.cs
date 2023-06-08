@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BomberManGUI.UsersManager
 {
+    // Клас, що відповідає за зберігання логіки роботи з даними користувачів 
     public class UserService
     {
         private UserRepository _userRepository;

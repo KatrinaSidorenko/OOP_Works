@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BomberManGUI.UsersManager
 {
+    // Клас, що відповідає за роботу з файлом
     public class UserRepository
     {
         private readonly string _filePath;

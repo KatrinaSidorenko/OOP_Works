@@ -5,6 +5,7 @@ using BomberManGUI.GameObjects.Walls;
 
 namespace BomberManGUI.View
 {
+    // Відповідає за заповнення масиву ігрових елементів та його зберігяння
     public class Map
     {
         public int TotalAmountOfTempWalls;

@@ -10,8 +10,10 @@ using BomberManGUI.Helpers;
 
 namespace BomberManGUI.Engine
 {
+    // Основний клас, що відповідає за опрацювання введених даних користувачем та керує іншими класами
     public class GameLogic
     {
+        
         public readonly Map MainMap;       
         public GameState GameState = GameState.InProgress;
         public int Score;
@@ -40,6 +42,7 @@ namespace BomberManGUI.Engine
                 {PlayerAction.End, CloseWindowRequest }
             };
         }
+
         public bool ProcessGameLogic(PlayerAction input)
         {
             Timer.CheckGameOverTime();
