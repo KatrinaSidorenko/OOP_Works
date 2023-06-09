@@ -7,6 +7,10 @@ namespace BomberManGUI.GameObjects
 {
     public class Coin : GameObject
     {
+        //public Coin(ref int totalCoins)
+        //{
+        //    totalCoins++;
+        //}
 
         public override bool CanMoveThrough => true;
 
@@ -15,7 +19,10 @@ namespace BomberManGUI.GameObjects
         public override void Action(GameLogic game)
         {
             game.Score++;
-            
+            if(game.CoinsAmount != 0)
+            {
+                game.CoinsAmount--;
+            }         
         }
         public override void Draw(BaseSceneManager drawer, int x, int y)
         {

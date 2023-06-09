@@ -12,13 +12,13 @@ namespace BomberManGUI.Engine
 {
     // Основний клас, що відповідає за опрацювання введених даних користувачем та керує іншими класами
     public class GameLogic
-    {
-        
+    {       
         public readonly Map MainMap;       
         public GameState GameState = GameState.InProgress;
         public int Score;
         public int Walls;
         public Timer Timer;
+        public int CoinsAmount;
         private int _playerXCoordinate;
         private int _playerYCoordinate;
         private Queue<(int, int)> _bombCoordinates = new Queue<(int, int)>();
@@ -31,6 +31,7 @@ namespace BomberManGUI.Engine
         {
             MainMap = board.PhisicMap;
             Walls = MainMap.TotalAmountOfTempWalls;
+            CoinsAmount = MainMap.StartAmountOfCoins;
             Timer = new Timer(this);
             _gamePhisics = new GamePhisics(MainMap);
             _sceneController = board;

@@ -11,6 +11,7 @@ namespace BomberManGUI.View
         public int TotalAmountOfTempWalls;
         public int PlayerXCoordiante;
         public int PlayerYCoordiante;
+        public int StartAmountOfCoins;
         private GameObject[,] _gameObjectsMap;       
         private int _xSize = Constant.WindowXSize;
         private int _ySize = Constant.WindowYSize;
@@ -57,6 +58,8 @@ namespace BomberManGUI.View
                         {
                             _gameObjectsMap[x, y] = new Coin();
                         }
+
+                        StartAmountOfCoins++;
                     }
                     else
                     {

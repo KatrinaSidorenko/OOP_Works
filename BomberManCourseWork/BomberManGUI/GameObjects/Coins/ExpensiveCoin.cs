@@ -10,6 +10,10 @@ namespace BomberManGUI.GameObjects
         public override void Action(GameLogic game)
         {
             game.Score += 2;
+            if (game.CoinsAmount != 0)
+            {
+                game.CoinsAmount--;
+            }
         }
         public override void Draw(BaseSceneManager drawer, int x, int y)
         {

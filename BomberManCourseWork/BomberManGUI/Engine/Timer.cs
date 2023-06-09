@@ -8,7 +8,7 @@ namespace BomberManGUI.Engine
     {
         private DateTime _startTime;
         private GameLogic _logic;
-        private TimeSpan _gameDuration = new TimeSpan(0, 2, 0);
+        private TimeSpan _gameDuration = new TimeSpan(0, 0, 30);
         public Timer(GameLogic _gameLogic)
         {
             _logic = _gameLogic;
@@ -24,7 +24,10 @@ namespace BomberManGUI.Engine
             }
             else if (DateTime.Now.Subtract(_startTime) > _gameDuration)
             {
-                _logic.GameState = GameState.TimeLeftEnd;
+                if (CheckOnAddTimeDuration())
+                {
+                    _logic.GameState = GameState.TimeLeftEnd;
+                }              
             }
         }
 
@@ -36,6 +39,18 @@ namespace BomberManGUI.Engine
             }
 
             return _gameDuration - (DateTime.Now.Subtract(_startTime));
+        }
+
+        public bool CheckOnAddTimeDuration()
+        {
+            if (_logic.CoinsAmount == 0)
+            {
+                _gameDuration += new TimeSpan(0, 0, 15);
+                _logic.CoinsAmount = int.MaxValue;
+                return false;
+            }
+
+            return true;
         }
     }
    }

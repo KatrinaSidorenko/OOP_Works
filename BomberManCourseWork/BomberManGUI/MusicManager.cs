@@ -28,7 +28,7 @@ namespace BomberManGUI
             
         }
 
-        public static void BackgrounSound(AxWindowsMediaPlayer player)
+        public static void BackgroundSoundPlay(AxWindowsMediaPlayer player)
         {
             player.URL = @"background_music.wav";
             player.settings.playCount = 9999;

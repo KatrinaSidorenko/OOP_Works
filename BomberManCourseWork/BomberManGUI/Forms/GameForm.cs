@@ -110,7 +110,7 @@ namespace BomberManGUI
 
         private void BackgroundSoundPlayer()
         {
-            MusicManager.BackgrounSound(MXP);
+            MusicManager.BackgroundSoundPlay(MXP);
         }
 
         private void ShowGameOverBox(string gameOver)
