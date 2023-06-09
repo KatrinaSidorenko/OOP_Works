@@ -7,11 +7,6 @@ namespace BomberManGUI.GameObjects
 {
     public class Coin : GameObject
     {
-        //public Coin(ref int totalCoins)
-        //{
-        //    totalCoins++;
-        //}
-
         public override bool CanMoveThrough => true;
 
         public override bool CanBeDestroyed => true;
