@@ -73,9 +73,9 @@ namespace BomberManGUI.Forms {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Point similar to {X=17,Y=17}.
         /// </summary>
-        public static System.Drawing.Point menuStrip1_TrayLocation {
+        public static System.Drawing.Point menuStrip_TrayLocation {
             get {
-                object obj = ResourceManager.GetObject("menuStrip1.TrayLocation", resourceCulture);
+                object obj = ResourceManager.GetObject("menuStrip.TrayLocation", resourceCulture);
                 return ((System.Drawing.Point)(obj));
             }
         }
@@ -87,16 +87,6 @@ namespace BomberManGUI.Forms {
             get {
                 object obj = ResourceManager.GetObject("MXP.OcxState", resourceCulture);
                 return ((object)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=277,Y=17}.
-        /// </summary>
-        public static System.Drawing.Point processGameTimer_TrayLocation {
-            get {
-                object obj = ResourceManager.GetObject("processGameTimer.TrayLocation", resourceCulture);
-                return ((System.Drawing.Point)(obj));
             }
         }
     }
